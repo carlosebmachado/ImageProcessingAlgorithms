@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace IPA
+namespace IPA.Front
 {
     public partial class AdditionConfigs : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace IPA
+﻿namespace IPA.Front
 {
     partial class App
     {
@@ -232,8 +232,8 @@
             // 
             // flpEffect
             // 
-            this.flpEffect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.flpEffect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpEffect.Location = new System.Drawing.Point(6, 16);
             this.flpEffect.Margin = new System.Windows.Forms.Padding(0);
@@ -254,8 +254,8 @@
             // 
             // flpOriginal
             // 
-            this.flpOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.flpOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpOriginal.Location = new System.Drawing.Point(6, 16);
             this.flpOriginal.Margin = new System.Windows.Forms.Padding(0);

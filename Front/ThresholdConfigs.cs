@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace IPA
+namespace IPA.Front
 {
-    public partial class SubtractionConfigs : Form
+    public partial class ThresholdConfigs : Form
     {
-        public SubtractionConfigs()
+        public ThresholdConfigs()
         {
             InitializeComponent();
         }
@@ -13,7 +13,7 @@ namespace IPA
         private void Confirm(object sender, EventArgs e)
         {
             App app = (App)Application.OpenForms[0];
-            app.Subtraction(cbSubtraction.Checked);
+            app.Threshold(cbThreshold.Checked, int.Parse(txtThreshold.Text));
             Close();
         }
     }

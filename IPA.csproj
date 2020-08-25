@@ -46,47 +46,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
+    <Compile Include="Core\ImageData.cs" />
+    <Compile Include="Front\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="About.Designer.cs">
+    <Compile Include="Front\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdditionConfigs.cs">
+    <Compile Include="Front\AdditionConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdditionConfigs.Designer.cs">
+    <Compile Include="Front\AdditionConfigs.Designer.cs">
       <DependentUpon>AdditionConfigs.cs</DependentUpon>
     </Compile>
-    <Compile Include="App.cs">
+    <Compile Include="Front\App.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App.Designer.cs">
+    <Compile Include="Front\App.Designer.cs">
       <DependentUpon>App.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\ImageEffects.cs" />
-    <Compile Include="Core\ImageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubtractionConfigs.cs">
+    <Compile Include="Front\SubtractionConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubtractionConfigs.Designer.cs">
+    <Compile Include="Front\SubtractionConfigs.Designer.cs">
       <DependentUpon>SubtractionConfigs.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThresholdConfigs.cs">
+    <Compile Include="Front\ThresholdConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ThresholdConfigs.Designer.cs">
+    <Compile Include="Front\ThresholdConfigs.Designer.cs">
       <DependentUpon>ThresholdConfigs.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="About.resx">
+    <EmbeddedResource Include="Front\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdditionConfigs.resx">
+    <EmbeddedResource Include="Front\AdditionConfigs.resx">
       <DependentUpon>AdditionConfigs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App.resx">
+    <EmbeddedResource Include="Front\App.resx">
       <DependentUpon>App.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,10 +98,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SubtractionConfigs.resx">
+    <EmbeddedResource Include="Front\SubtractionConfigs.resx">
       <DependentUpon>SubtractionConfigs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ThresholdConfigs.resx">
+    <EmbeddedResource Include="Front\ThresholdConfigs.resx">
       <DependentUpon>ThresholdConfigs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

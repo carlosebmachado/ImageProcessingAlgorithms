@@ -6,13 +6,12 @@ using System.Drawing;
 using System.Security;
 using System.Windows.Forms;
 
-namespace IPA
+namespace IPA.Front
 {
     public partial class App : Form
     {
-        private List<Bitmap> _images = new List<Bitmap>();
-        private List<Bitmap> _applyed;
-        private string[] _fileNames;
+        private List<ImageData> _images = new List<ImageData>();
+        private List<ImageData> _applyed = new List<ImageData>();
 
         public App()
         {
@@ -38,15 +37,15 @@ namespace IPA
 
             if (dr == DialogResult.OK)
             {
-                _fileNames = openFileDialog.FileNames;
+                string[] fileNames = openFileDialog.FileNames;
                 // le os arquivos selecionados
-                foreach (string file in _fileNames)
+                foreach (string file in fileNames)
                 {
                     //txtFile.Text += file;
                     try
                     {
                         Image img = Image.FromFile(file);
-                        _images.Add((Bitmap)img);
+                        _images.Add(new ImageData((Bitmap)img, file));
                         flpOriginal.Controls.Add(GenericPB(img.Height, img.Width, img));
                     }
                     catch (SecurityException ex)
@@ -76,7 +75,8 @@ namespace IPA
         private void SaveFiles(object sender, EventArgs e)
         {
             if (NoImages()) return;
-            if (_applyed == null)
+            // verifica se tem imagens para salvar
+            if (_applyed.Count == 0)
             {
                 MessageBox.Show("Não há nada para salvar.",
                                 "Imagem",
@@ -84,33 +84,35 @@ namespace IPA
                                 MessageBoxIcon.Warning);
                 return;
             }
-
-            for (int i = 0; i < _applyed.Count; i++)
+            // percorre as imagens com efeitos e salva 
+            foreach (var id in _applyed)
             {
-                string fn = _fileNames[i].Substring(0, _fileNames[i].Length - 4);
-                _applyed[i].Save(fn + "_effect_.jpg");
+                id.Image.Save(id.GetFullName() + ".jpg");
             }
+            _applyed.Clear();
         }
 
         private void CleanAll(object sender, EventArgs e)
         {
+            // reseta todos os dados
             flpOriginal.Controls.Clear();
             flpEffect.Controls.Clear();
-            _images = new List<Bitmap>();
-            _applyed = null;
-            _fileNames = null;
+            _images.Clear();
+            _applyed.Clear();
         }
 
         private void CleanOriginal(object sender, EventArgs e)
         {
+            // reseta os dados de imagens carregadas
             flpOriginal.Controls.Clear();
-            _images = new List<Bitmap>();
+            _images.Clear();
         }
 
         private void CleanEffect(object sender, EventArgs e)
         {
+            // reseta os dados de imagens com efeitos
             flpEffect.Controls.Clear();
-            _applyed = null;
+            _applyed.Clear();
         }
 
         private void Exit(object sender, EventArgs e)
@@ -130,10 +132,14 @@ namespace IPA
         private void GrayScaleS(object sender, EventArgs e)
         {
             if (NoImages()) return;
-
+            // monitora o tempo decorrido
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            _applyed = ImageEffects.SimpleGrayScale(_images);
+            // percorre as imagens carregadas e aplica os efeitos em cada uma e cria uma nova com o efeito aplicado
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(ImageEffects.SimpleGrayScale(id.Image), id.GetFullName() + "(simple_gray_scale)" + ".jpg"));
+            }
             stopwatch.Stop();
 
             DisplayImagesEffect();
@@ -147,7 +153,10 @@ namespace IPA
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            _applyed = ImageEffects.SimpleGrayScale(_images);
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(ImageEffects.WeightedGrayScale(id.Image), id.GetFullName() + "(weighted_gray_scale)" + ".jpg"));
+            }
             stopwatch.Stop();
 
             DisplayImagesEffect();
@@ -161,7 +170,10 @@ namespace IPA
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            _applyed = ImageEffects.Negative(_images);
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(ImageEffects.Negative(id.Image), id.GetFullName() + "(negative)" + ".jpg"));
+            }
             stopwatch.Stop();
 
             DisplayImagesEffect();
@@ -180,13 +192,20 @@ namespace IPA
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
+            // verifica se é necessário aplicar pb antes de alicar o limiar
             if (bw)
             {
-                _applyed = ImageEffects.Threshold(ImageEffects.SimpleGrayScale(_images), L);
+                foreach (var id in _images)
+                {
+                    _applyed.Add(new ImageData(ImageEffects.Threshold(ImageEffects.SimpleGrayScale(id.Image), L), id.GetFullName() + "(threshold)" + ".jpg"));
+                }
             }
             else
             {
-                _applyed = ImageEffects.Threshold(_images, L);
+                foreach (var id in _images)
+                {
+                    _applyed.Add(new ImageData(ImageEffects.Threshold(id.Image, L), id.GetFullName() + "(threshold)" + ".jpg"));
+                }
             }
             stopwatch.Stop();
 
@@ -203,29 +222,13 @@ namespace IPA
         public void Addition(float p)
         {
             if (NoImages()) return;
-            if(_images.Count != 2)
-            {
-                MessageBox.Show("Selecione apenas duas imagens.",
-                                "Erro",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
-            if (!(_images[0].Width < _images[1].Width && _images[0].Height < _images[1].Height ||
-                  _images[1].Width < _images[0].Width && _images[1].Height < _images[0].Height ||
-                  _images[1].Width == _images[0].Width && _images[1].Height == _images[0].Height))
-            {
-                MessageBox.Show("Imagens incompatíveis. Se as imagens forem de tamanhos diferentes, " +
-                                "uma delas deve ser menor tanto na altura quanto na largura.",
-                                "Erro",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
+            if (CorrectImageAmount()) return;
+            if (CompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            _applyed = ImageEffects.Adiction(_images[0], _images[1], p);
+            // pega as duas imagens e aplica o efeito para gerar apenas uma imagens
+            _applyed.Add(new ImageData(ImageEffects.Adiction(_images[0].Image, _images[1].Image, p), _images[0].GetFullName() + _images[1].Name + "(addiction)" + ".jpg"));
             stopwatch.Stop();
 
             DisplayImagesEffect();
@@ -243,30 +246,20 @@ namespace IPA
         public void Subtraction(bool invert)
         {
             if (NoImages()) return;
-            if (_images.Count != 2)
-            {
-                MessageBox.Show("Selecione apenas duas imagens.",
-                                "Erro",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
-            if (!(_images[0].Width < _images[1].Width && _images[0].Height < _images[1].Height ||
-                  _images[1].Width < _images[0].Width && _images[1].Height < _images[0].Height ||
-                  _images[1].Width == _images[0].Width && _images[1].Height == _images[0].Height))
-            {
-                MessageBox.Show("Imagens incompatíveis. Se as imagens forem de tamanhos diferentes, " +
-                                "uma delas deve ser menor tanto na altura quanto na largura." +
-                                "Procure também não usar imagens de tamanhos muito diferentes.",
-                                "Erro",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
+            if (CorrectImageAmount()) return;
+            if (CompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            _applyed = ImageEffects.Subtraction(_images[0], _images[1], invert);
+            // é possível inverter a ordem das imagens para um efeito diferente na subtração
+            if (invert)
+            {
+                _applyed.Add(new ImageData(ImageEffects.Subtraction(_images[0].Image, _images[1].Image, invert), _images[1].GetFullName() + _images[0].Name + "(subtraction)" + ".jpg"));
+            }
+            else
+            {
+                _applyed.Add(new ImageData(ImageEffects.Subtraction(_images[0].Image, _images[1].Image, invert), _images[0].GetFullName() + _images[1].Name + "(subtraction)" + ".jpg"));
+            }
             stopwatch.Stop();
 
             DisplayImagesEffect();
@@ -280,6 +273,8 @@ namespace IPA
 
         private PictureBox GenericPB(int h, int w, Image image)
         {
+            // caixa generica de imagem para ser aplicada no container
+            // calculo de proporção para não haver distorção
             float fw = 100F / h * w;
             return new PictureBox
             {
@@ -288,19 +283,6 @@ namespace IPA
                 Width = (int)fw,
                 Image = image
             };
-        }
-
-        private bool NoImages()
-        {
-            if (_fileNames == null)
-            {
-                MessageBox.Show("Nenhuma imagem foi selecionada.",
-                                "Imagem",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return true;
-            }
-            return false;
         }
 
         private void ShowElapsedTime(string t)
@@ -313,10 +295,56 @@ namespace IPA
 
         private void DisplayImagesEffect()
         {
+            // limpa as existentes e dispoe as imagens novamente com as novas
+            flpEffect.Controls.Clear();
             foreach (var a in _applyed)
             {
-                flpEffect.Controls.Add(GenericPB(a.Height, a.Width, a));
+                var img = a.Image;
+                flpEffect.Controls.Add(GenericPB(img.Height, img.Width, img));
             }
+        }
+
+        private bool CompatibleImages()
+        {
+            if (!(_images[0].Image.Width < _images[1].Image.Width && _images[0].Image.Height < _images[1].Image.Height ||
+                  _images[1].Image.Width < _images[0].Image.Width && _images[1].Image.Height < _images[0].Image.Height ||
+                  _images[1].Image.Width == _images[0].Image.Width && _images[1].Image.Height == _images[0].Image.Height))
+            {
+                MessageBox.Show("Imagens incompatíveis. Se as imagens forem de tamanhos diferentes, " +
+                                "uma delas deve ser menor tanto na altura quanto na largura." +
+                                "Procure também não usar imagens de tamanhos muito diferentes.",
+                                "Erro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
+        }
+
+        private bool CorrectImageAmount()
+        {
+            if (_images.Count != 2)
+            {
+                MessageBox.Show("Você deve selecionar duas imagens.",
+                                "Erro",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return true;
+            }
+            return false;
+        }
+
+        private bool NoImages()
+        {
+            if (_images.Count == 0)
+            {
+                MessageBox.Show("Nenhuma imagem foi selecionada.",
+                                "Imagem",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return true;
+            }
+            return false;
         }
 
         #endregion Aux

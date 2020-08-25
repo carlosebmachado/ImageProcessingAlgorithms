@@ -1,4 +1,4 @@
-﻿namespace IPA
+﻿namespace IPA.Front
 {
     partial class AdditionConfigs
     {
