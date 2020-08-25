@@ -10,8 +10,8 @@ namespace IPA.Front
 {
     public partial class App : Form
     {
-        private List<ImageData> _images = new List<ImageData>();
-        private List<ImageData> _applyed = new List<ImageData>();
+        private readonly List<ImageData> _images = new List<ImageData>();
+        private readonly List<ImageData> _applyed = new List<ImageData>();
 
         public App()
         {
@@ -312,7 +312,8 @@ namespace IPA.Front
             {
                 MessageBox.Show("Imagens incompatíveis. Se as imagens forem de tamanhos diferentes, " +
                                 "uma delas deve ser menor tanto na altura quanto na largura." +
-                                "Procure também não usar imagens de tamanhos muito diferentes.",
+                                "Procure também não usar imagens de tamanhos muito diferentes " +
+                                "para que as partes principais das imagens coincidam.",
                                 "Erro",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
