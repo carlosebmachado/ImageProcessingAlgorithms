@@ -13,6 +13,19 @@ namespace IPA.Front
         private readonly List<ImageData> _images = new List<ImageData>();
         private readonly List<ImageData> _applyed = new List<ImageData>();
 
+        private const int BLUR = 0;
+        private const int SHARPEN = 1;
+        private const int EDGE_ENHANCE = 2;
+        private const int EDGE_DETECT_1 = 3;
+        private const int EDGE_DETECT_2 = 4;
+        private const int OBJECT_DETECT = 5;
+        private const int HIGHLIGHTING_RELIEF = 6;
+
+        private const int DILATION = 0;
+        private const int EROSION = 1;
+        private const int MORPH_OPEN = 2;
+        private const int MORPH_CLOSE = 3;
+
         public App()
         {
             InitializeComponent();
@@ -271,12 +284,14 @@ namespace IPA.Front
 
         #region SpaceDomain
 
+        #region Convoluction
+
         private void ConvoluctionForm(object sender, EventArgs e)
         {
             new ConvoluctionConfigs().ShowDialog();
         }
 
-        public void Convoluction(int[][] mask, bool red, bool green, bool blue)
+        public void Convoluction(int[][] mask, int div, bool red, bool green, bool blue)
         {
             if (NoImages()) return;
 
@@ -285,7 +300,7 @@ namespace IPA.Front
             foreach (var id in _images)
             {
                 _applyed.Add(new ImageData(
-                    SpaceEffects.Convoluction(id.Image, mask, 2, red, green, blue),
+                    SpaceEffects.Convoluction(id.Image, mask, div, 2, red, green, blue),
                     id.GetFullName() + "__personal_convoluction" + ".jpg"));
             }
             stopwatch.Stop();
@@ -295,50 +310,171 @@ namespace IPA.Front
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
 
-        private void BorderDetect(object sender, EventArgs e)
+        private void Blur(object sender, EventArgs e)
         {
-            if (NoImages()) return;
+            var mask = new int[][]
+            {
+                new int[] { 1, 1, 1, 1, 1},
+                new int[] { 1, 0, 0, 0, 1},
+                new int[] { 1, 0, 0, 0, 1},
+                new int[] { 1, 0, 0, 0, 1},
+                new int[] { 1, 1, 1, 1, 1}
+            };
+            ConvPreEffects(mask, BLUR);
+        }
 
+        private void Sharpen(object sender, EventArgs e)
+        {
+            var mask = new int[][]
+            {
+                new int[] {  0, -1,  0},
+                new int[] { -1,  5, -1},
+                new int[] {  0, -1,  0}
+            };
+            ConvPreEffects(mask, SHARPEN);
+        }
+
+        private void EdgeEnhance(object sender, EventArgs e)
+        {
+            var mask = new int[][]
+            {
+                new int[] {  0, 0, 0},
+                new int[] { -1, 1, 0},
+                new int[] {  0, 0, 0}
+            };
+            ConvPreEffects(mask, EDGE_ENHANCE);
+        }
+
+        private void EdgeDetect1(object sender, EventArgs e)
+        {
             var mask = new int[][]
             {
                 new int[] { -1, -1, -1},
                 new int[] { -1,  8, -1},
-                new int[] { -1, -1, -1},
+                new int[] { -1, -1, -1}
             };
+            ConvPreEffects(mask, EDGE_DETECT_1);
+        }
 
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            foreach (var id in _images)
+        private void EdgeDetect2(object sender, EventArgs e)
+        {
+            var mask = new int[][]
             {
-                _applyed.Add(new ImageData(
-                    SpaceEffects.Convoluction(id.Image, mask, 1, true, true, true),
-                    id.GetFullName() + "__border_detect" + ".jpg"));
-            }
-            stopwatch.Stop();
-
-            DisplayImagesEffect();
-
-            ShowElapsedTime(stopwatch.Elapsed.ToString());
+                new int[] { 0,  1, 0},
+                new int[] { 1, -4, 1},
+                new int[] { 0,  1, 0}
+            };
+            ConvPreEffects(mask, EDGE_DETECT_2);
         }
 
         private void ObjectsDetect(object sender, EventArgs e)
         {
-            if (NoImages()) return;
-
             var mask = new int[][]
             {
                 new int[] { -1, 0, 0},
                 new int[] {  0, 1, 0},
-                new int[] {  0, 0, 0},
+                new int[] {  0, 0, 0}
             };
+            ConvPreEffects(mask, OBJECT_DETECT);
+        }
+
+        private void HighlightingRelief(object sender, EventArgs e)
+        {
+            var mask = new int[][]
+            {
+                new int[] { -2, -1, 0},
+                new int[] { -1,  1, 1},
+                new int[] {  0,  1, 2}
+            };
+            ConvPreEffects(mask, HIGHLIGHTING_RELIEF);
+        }
+
+        private void ConvPreEffects(int[][] mask, int effect)
+        {
+            if (NoImages()) return;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             foreach (var id in _images)
             {
-                _applyed.Add(new ImageData(
-                    SpaceEffects.Convoluction(id.Image, mask, 1, true, true, true),
-                    id.GetFullName() + "__object_detect" + ".jpg"));
+                switch (effect)
+                {
+                    case BLUR:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 16, 2, true, true, true),
+                            id.GetFullName() + "__blur" + ".jpg"));
+                        break;
+                    case SHARPEN:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
+                            id.GetFullName() + "__sharpen" + ".jpg"));
+                        break;
+                    case EDGE_ENHANCE:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
+                            id.GetFullName() + "__edge_enhance" + ".jpg"));
+                        break;
+                    case EDGE_DETECT_1:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
+                            id.GetFullName() + "__edge_detect1" + ".jpg"));
+                        break;
+                    case EDGE_DETECT_2:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
+                            id.GetFullName() + "__edge_detect" + ".jpg"));
+                        break;
+                    case OBJECT_DETECT:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
+                            id.GetFullName() + "__object_detect" + ".jpg"));
+                        break;
+                    case HIGHLIGHTING_RELIEF:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
+                            id.GetFullName() + "__highlight_relief" + ".jpg"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+
+        }
+
+        #endregion Convoluction
+
+        #region Morphology
+
+        private void CustonMorphologyForm(object sender, EventArgs e)
+        {
+            new MorphologyConfig().ShowDialog();
+        }
+
+        public void CustomMorphology(bool erosion, int[][] mask, int size)
+        {
+            if (NoImages()) return;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                if (erosion)
+                {
+                    _applyed.Add(new ImageData(
+                        SpaceEffects.Erosion(id.Image, mask, size),
+                        id.GetFullName() + "__custom_morphology" + ".jpg"));
+                }
+                else
+                {
+                    _applyed.Add(new ImageData(
+                        SpaceEffects.Dilation(id.Image, mask, size),
+                        id.GetFullName() + "__custom_morphology" + ".jpg"));
+                }
             }
             stopwatch.Stop();
 
@@ -346,6 +482,75 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
+        private void Dilation(object sender, EventArgs e)
+        {
+            MorphEffect(DILATION);
+        }
+        private void Erosion(object sender, EventArgs e)
+        {
+            MorphEffect(EROSION);
+        }
+        private void MorphOpen(object sender, EventArgs e)
+        {
+            MorphEffect(MORPH_OPEN);
+        }
+        private void MorphClose(object sender, EventArgs e)
+        {
+            MorphEffect(MORPH_CLOSE);
+        }
+
+        private void MorphEffect(int effect)
+        {
+
+            if (NoImages()) return;
+
+            var mask = new int[][]
+            {
+                new int[] { 1, 1, 1},
+                new int[] { 1, 1, 1},
+                new int[] { 1, 1, 1}
+            };
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+
+                switch (effect)
+                {
+                    case DILATION:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Dilation(id.Image, mask, 1),
+                            id.GetFullName() + "__dilation" + ".jpg"));
+                        break;
+                    case EROSION:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Erosion(id.Image, mask, 1),
+                            id.GetFullName() + "__erosion" + ".jpg"));
+                        break;
+                    case MORPH_OPEN:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Dilation(SpaceEffects.Erosion(id.Image, mask, 1), mask, 1),
+                            id.GetFullName() + "__abertura" + ".jpg"));
+                        break;
+                    case MORPH_CLOSE:
+                        _applyed.Add(new ImageData(
+                            SpaceEffects.Erosion(SpaceEffects.Dilation(id.Image, mask, 1), mask, 1),
+                            id.GetFullName() + "__fechamento" + ".jpg"));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        #endregion Morphology
 
         #endregion SpaceDomain
 

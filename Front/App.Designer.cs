@@ -48,9 +48,19 @@
             this.domínioDeEspaçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConvoluction = new System.Windows.Forms.ToolStripMenuItem();
             this.personalizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.detectarBordasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.detectarObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSharpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdgeEnhance = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdgeDetect1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdgeDetect2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiObjectDetect = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHighlightingRelief = new System.Windows.Forms.ToolStripMenuItem();
+            this.erosãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPersonalMorphology = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDilation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiErosion = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMorphOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmoMorphClose = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -191,7 +201,8 @@
             // domínioDeEspaçoToolStripMenuItem
             // 
             this.domínioDeEspaçoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiConvoluction});
+            this.tsmiConvoluction,
+            this.erosãoToolStripMenuItem});
             this.domínioDeEspaçoToolStripMenuItem.Name = "domínioDeEspaçoToolStripMenuItem";
             this.domínioDeEspaçoToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
             this.domínioDeEspaçoToolStripMenuItem.Text = "Domínio de Espaço";
@@ -200,9 +211,13 @@
             // 
             this.tsmiConvoluction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personalizadoToolStripMenuItem,
-            this.detectarBordasToolStripMenuItem1,
-            this.detectarObjetosToolStripMenuItem,
-            this.borrarToolStripMenuItem1});
+            this.borrarToolStripMenuItem1,
+            this.tsmiSharpen,
+            this.tsmiEdgeEnhance,
+            this.tsmiEdgeDetect1,
+            this.tsmiEdgeDetect2,
+            this.tsmiObjectDetect,
+            this.tsmiHighlightingRelief});
             this.tsmiConvoluction.Name = "tsmiConvoluction";
             this.tsmiConvoluction.Size = new System.Drawing.Size(180, 22);
             this.tsmiConvoluction.Text = "Convolução";
@@ -211,29 +226,105 @@
             // personalizadoToolStripMenuItem
             // 
             this.personalizadoToolStripMenuItem.Name = "personalizadoToolStripMenuItem";
-            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.personalizadoToolStripMenuItem.Text = "Personalizado";
             this.personalizadoToolStripMenuItem.Click += new System.EventHandler(this.ConvoluctionForm);
-            // 
-            // detectarBordasToolStripMenuItem1
-            // 
-            this.detectarBordasToolStripMenuItem1.Name = "detectarBordasToolStripMenuItem1";
-            this.detectarBordasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.detectarBordasToolStripMenuItem1.Text = "Detectar Bordas";
-            this.detectarBordasToolStripMenuItem1.Click += new System.EventHandler(this.BorderDetect);
-            // 
-            // detectarObjetosToolStripMenuItem
-            // 
-            this.detectarObjetosToolStripMenuItem.Name = "detectarObjetosToolStripMenuItem";
-            this.detectarObjetosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.detectarObjetosToolStripMenuItem.Text = "Detectar Objetos";
-            this.detectarObjetosToolStripMenuItem.Click += new System.EventHandler(this.ObjectsDetect);
             // 
             // borrarToolStripMenuItem1
             // 
             this.borrarToolStripMenuItem1.Name = "borrarToolStripMenuItem1";
-            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
             this.borrarToolStripMenuItem1.Text = "Borrar";
+            this.borrarToolStripMenuItem1.Click += new System.EventHandler(this.Blur);
+            // 
+            // tsmiSharpen
+            // 
+            this.tsmiSharpen.Name = "tsmiSharpen";
+            this.tsmiSharpen.Size = new System.Drawing.Size(166, 22);
+            this.tsmiSharpen.Text = "Aguçar";
+            this.tsmiSharpen.Click += new System.EventHandler(this.Sharpen);
+            // 
+            // tsmiEdgeEnhance
+            // 
+            this.tsmiEdgeEnhance.Name = "tsmiEdgeEnhance";
+            this.tsmiEdgeEnhance.Size = new System.Drawing.Size(166, 22);
+            this.tsmiEdgeEnhance.Text = "Realçar Bordas";
+            this.tsmiEdgeEnhance.Click += new System.EventHandler(this.EdgeEnhance);
+            // 
+            // tsmiEdgeDetect1
+            // 
+            this.tsmiEdgeDetect1.Name = "tsmiEdgeDetect1";
+            this.tsmiEdgeDetect1.Size = new System.Drawing.Size(166, 22);
+            this.tsmiEdgeDetect1.Text = "Detectar Bordas 1";
+            this.tsmiEdgeDetect1.Click += new System.EventHandler(this.EdgeDetect1);
+            // 
+            // tsmiEdgeDetect2
+            // 
+            this.tsmiEdgeDetect2.Name = "tsmiEdgeDetect2";
+            this.tsmiEdgeDetect2.Size = new System.Drawing.Size(166, 22);
+            this.tsmiEdgeDetect2.Text = "Detectar Bordas 2";
+            this.tsmiEdgeDetect2.Click += new System.EventHandler(this.EdgeDetect2);
+            // 
+            // tsmiObjectDetect
+            // 
+            this.tsmiObjectDetect.Name = "tsmiObjectDetect";
+            this.tsmiObjectDetect.Size = new System.Drawing.Size(166, 22);
+            this.tsmiObjectDetect.Text = "Detectar Objetos";
+            this.tsmiObjectDetect.Click += new System.EventHandler(this.ObjectsDetect);
+            // 
+            // tsmiHighlightingRelief
+            // 
+            this.tsmiHighlightingRelief.Name = "tsmiHighlightingRelief";
+            this.tsmiHighlightingRelief.Size = new System.Drawing.Size(166, 22);
+            this.tsmiHighlightingRelief.Text = "Destacar Relevo";
+            this.tsmiHighlightingRelief.Click += new System.EventHandler(this.HighlightingRelief);
+            // 
+            // erosãoToolStripMenuItem
+            // 
+            this.erosãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiPersonalMorphology,
+            this.tsmiDilation,
+            this.tsmiErosion,
+            this.tsmiMorphOpen,
+            this.tsmoMorphClose});
+            this.erosãoToolStripMenuItem.Name = "erosãoToolStripMenuItem";
+            this.erosãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.erosãoToolStripMenuItem.Text = "Morfologia";
+            // 
+            // tsmiPersonalMorphology
+            // 
+            this.tsmiPersonalMorphology.Name = "tsmiPersonalMorphology";
+            this.tsmiPersonalMorphology.Size = new System.Drawing.Size(180, 22);
+            this.tsmiPersonalMorphology.Text = "Personalizado";
+            this.tsmiPersonalMorphology.Click += new System.EventHandler(this.CustonMorphologyForm);
+            // 
+            // tsmiDilation
+            // 
+            this.tsmiDilation.Name = "tsmiDilation";
+            this.tsmiDilation.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDilation.Text = "Dilatação";
+            this.tsmiDilation.Click += new System.EventHandler(this.Dilation);
+            // 
+            // tsmiErosion
+            // 
+            this.tsmiErosion.Name = "tsmiErosion";
+            this.tsmiErosion.Size = new System.Drawing.Size(180, 22);
+            this.tsmiErosion.Text = "Erosão";
+            this.tsmiErosion.Click += new System.EventHandler(this.Erosion);
+            // 
+            // tsmiMorphOpen
+            // 
+            this.tsmiMorphOpen.Name = "tsmiMorphOpen";
+            this.tsmiMorphOpen.Size = new System.Drawing.Size(180, 22);
+            this.tsmiMorphOpen.Text = "Abertura";
+            this.tsmiMorphOpen.Click += new System.EventHandler(this.MorphOpen);
+            // 
+            // tsmoMorphClose
+            // 
+            this.tsmoMorphClose.Name = "tsmoMorphClose";
+            this.tsmoMorphClose.Size = new System.Drawing.Size(180, 22);
+            this.tsmoMorphClose.Text = "Fechamento";
+            this.tsmoMorphClose.Click += new System.EventHandler(this.MorphClose);
             // 
             // sairToolStripMenuItem
             // 
@@ -368,9 +459,19 @@
         private System.Windows.Forms.ToolStripMenuItem domínioDeEspaçoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiConvoluction;
         private System.Windows.Forms.ToolStripMenuItem personalizadoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem detectarBordasToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem detectarObjetosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEdgeDetect1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiObjectDetect;
         private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSharpen;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEdgeEnhance;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEdgeDetect2;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHighlightingRelief;
+        private System.Windows.Forms.ToolStripMenuItem erosãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDilation;
+        private System.Windows.Forms.ToolStripMenuItem tsmiErosion;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMorphOpen;
+        private System.Windows.Forms.ToolStripMenuItem tsmoMorphClose;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPersonalMorphology;
     }
 }
 

@@ -28,7 +28,7 @@ namespace IPA.Front
                 new int[] { int.Parse(tb30.Text), int.Parse(tb31.Text), int.Parse(tb32.Text), int.Parse(tb33.Text), int.Parse(tb34.Text) },
                 new int[] { int.Parse(tb40.Text), int.Parse(tb41.Text), int.Parse(tb42.Text), int.Parse(tb43.Text), int.Parse(tb44.Text) }
             };
-            app.Convoluction(matrix, cbRed.Checked, cbGreen.Checked, cbBlue.Checked);
+            app.Convoluction(matrix, int.Parse(txtDiv.Text), cbRed.Checked, cbGreen.Checked, cbBlue.Checked);
             Close();
         }
     }
