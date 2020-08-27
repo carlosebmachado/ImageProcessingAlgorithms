@@ -26,6 +26,10 @@ namespace IPA.Front
         private const int MORPH_OPEN = 2;
         private const int MORPH_CLOSE = 3;
 
+        private int _counter = 0;
+        private float _imgHeight = 200F;
+        private bool _allowBigger = false;
+
         public App()
         {
             InitializeComponent();
@@ -100,7 +104,8 @@ namespace IPA.Front
             // percorre as imagens com efeitos e salva 
             foreach (var id in _applyed)
             {
-                id.Image.Save(id.GetFullName() + ".jpg");
+                id.Image.Save(id.GetFullName() + "-" + _counter + ".jpg");
+                _counter++;
             }
             _applyed.Clear();
         }
@@ -126,6 +131,18 @@ namespace IPA.Front
             // reseta os dados de imagens com efeitos
             flpEffect.Controls.Clear();
             _applyed.Clear();
+        }
+
+        private void ImageSize(object sender, EventArgs e)
+        {
+            new SelectImageSize().ShowDialog();
+        }
+
+        public void SetImageSize(float w, bool allowBigger)
+        {
+            _imgHeight = w;
+            _allowBigger = allowBigger;
+            DisplayImages();
         }
 
         private void Exit(object sender, EventArgs e)
@@ -562,13 +579,15 @@ namespace IPA.Front
         {
             // caixa generica de imagem para ser aplicada no container
             // calculo de proporção para não haver distorção
-            float defHeight = 200F;
-            if (defHeight > h) defHeight = h;
-            float fw = defHeight / h * w;
+            float fh = _imgHeight;
+            if (!_allowBigger)
+                if (_imgHeight > h)
+                    fh = h;
+            float fw = _imgHeight / h * w;
             return new PictureBox
             {
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                Height = (int)defHeight,
+                Height = (int)fh,
                 Width = (int)fw,
                 Image = image
             };
@@ -582,6 +601,11 @@ namespace IPA.Front
                             MessageBoxIcon.Information);
         }
 
+        private void DisplayImages()
+        {
+            DisplayImagesEffect();
+            DisplayImagesOriginal();
+        }
         private void DisplayImagesEffect()
         {
             // limpa as existentes e dispoe as imagens novamente com as novas
@@ -590,6 +614,16 @@ namespace IPA.Front
             {
                 var img = a.Image;
                 flpEffect.Controls.Add(GenericPB(img.Height, img.Width, img));
+            }
+        }
+        private void DisplayImagesOriginal()
+        {
+            // limpa as existentes e dispoe as imagens novamente com as novas
+            flpOriginal.Controls.Clear();
+            foreach (var a in _images)
+            {
+                var img = a.Image;
+                flpOriginal.Controls.Add(GenericPB(img.Height, img.Width, img));
             }
         }
 

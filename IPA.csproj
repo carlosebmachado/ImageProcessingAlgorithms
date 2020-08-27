@@ -49,16 +49,16 @@
     <Compile Include="Core\ImageData.cs" />
     <Compile Include="Core\SpaceEffects.cs" />
     <Compile Include="Core\Util.cs" />
-    <Compile Include="Front\About.cs">
+    <Compile Include="Front\Others\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front\About.Designer.cs">
+    <Compile Include="Front\Others\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front\AdditionConfigs.cs">
+    <Compile Include="Front\Configs\AdditionConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front\AdditionConfigs.Designer.cs">
+    <Compile Include="Front\Configs\AdditionConfigs.Designer.cs">
       <DependentUpon>AdditionConfigs.cs</DependentUpon>
     </Compile>
     <Compile Include="Front\App.cs">
@@ -68,46 +68,55 @@
       <DependentUpon>App.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\ValueEffects.cs" />
-    <Compile Include="Front\ConvoluctionConfigs.cs">
+    <Compile Include="Front\Configs\ConvoluctionConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front\ConvoluctionConfigs.Designer.cs">
+    <Compile Include="Front\Configs\ConvoluctionConfigs.Designer.cs">
       <DependentUpon>ConvoluctionConfigs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front\MorphologyConfig.cs">
+    <Compile Include="Front\Configs\MorphologyConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front\MorphologyConfig.Designer.cs">
+    <Compile Include="Front\Configs\MorphologyConfig.Designer.cs">
       <DependentUpon>MorphologyConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Others\SelectImageSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Others\SelectImageSize.Designer.cs">
+      <DependentUpon>SelectImageSize.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Front\SubtractionConfigs.cs">
+    <Compile Include="Front\Configs\SubtractionConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front\SubtractionConfigs.Designer.cs">
+    <Compile Include="Front\Configs\SubtractionConfigs.Designer.cs">
       <DependentUpon>SubtractionConfigs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Front\ThresholdConfigs.cs">
+    <Compile Include="Front\Configs\ThresholdConfigs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Front\ThresholdConfigs.Designer.cs">
+    <Compile Include="Front\Configs\ThresholdConfigs.Designer.cs">
       <DependentUpon>ThresholdConfigs.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Front\About.resx">
+    <EmbeddedResource Include="Front\Others\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front\AdditionConfigs.resx">
+    <EmbeddedResource Include="Front\Configs\AdditionConfigs.resx">
       <DependentUpon>AdditionConfigs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front\App.resx">
       <DependentUpon>App.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front\ConvoluctionConfigs.resx">
+    <EmbeddedResource Include="Front\Configs\ConvoluctionConfigs.resx">
       <DependentUpon>ConvoluctionConfigs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front\MorphologyConfig.resx">
+    <EmbeddedResource Include="Front\Configs\MorphologyConfig.resx">
       <DependentUpon>MorphologyConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Others\SelectImageSize.resx">
+      <DependentUpon>SelectImageSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,10 +127,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Front\SubtractionConfigs.resx">
+    <EmbeddedResource Include="Front\Configs\SubtractionConfigs.resx">
       <DependentUpon>SubtractionConfigs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Front\ThresholdConfigs.resx">
+    <EmbeddedResource Include="Front\Configs\ThresholdConfigs.resx">
       <DependentUpon>ThresholdConfigs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
