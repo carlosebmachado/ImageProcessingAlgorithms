@@ -59,13 +59,14 @@
             this.ClientSize = new System.Drawing.Size(225, 81);
             this.Controls.Add(this.cbSubtraction);
             this.Controls.Add(this.btnConfirm);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SubtractionConfigs";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurar subtração";
-            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

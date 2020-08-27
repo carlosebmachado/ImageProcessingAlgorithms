@@ -129,6 +129,8 @@ namespace IPA.Front
 
         #region Effects
 
+        #region ValueDomain
+
         private void GrayScaleS(object sender, EventArgs e)
         {
             if (NoImages()) return;
@@ -138,7 +140,7 @@ namespace IPA.Front
             // percorre as imagens carregadas e aplica os efeitos em cada uma e cria uma nova com o efeito aplicado
             foreach (var id in _images)
             {
-                _applyed.Add(new ImageData(ImageEffects.SimpleGrayScale(id.Image), id.GetFullName() + "(simple_gray_scale)" + ".jpg"));
+                _applyed.Add(new ImageData(ValueEffects.GrayScale(id.Image, false), id.GetFullName() + "__simple_gray_scale" + ".jpg"));
             }
             stopwatch.Stop();
 
@@ -155,7 +157,7 @@ namespace IPA.Front
             stopwatch.Start();
             foreach (var id in _images)
             {
-                _applyed.Add(new ImageData(ImageEffects.WeightedGrayScale(id.Image), id.GetFullName() + "(weighted_gray_scale)" + ".jpg"));
+                _applyed.Add(new ImageData(ValueEffects.GrayScale(id.Image, true), id.GetFullName() + "__weighted_gray_scale" + ".jpg"));
             }
             stopwatch.Stop();
 
@@ -172,7 +174,7 @@ namespace IPA.Front
             stopwatch.Start();
             foreach (var id in _images)
             {
-                _applyed.Add(new ImageData(ImageEffects.Negative(id.Image), id.GetFullName() + "(negative)" + ".jpg"));
+                _applyed.Add(new ImageData(ValueEffects.Negative(id.Image), id.GetFullName() + "__negative" + ".jpg"));
             }
             stopwatch.Stop();
 
@@ -197,14 +199,14 @@ namespace IPA.Front
             {
                 foreach (var id in _images)
                 {
-                    _applyed.Add(new ImageData(ImageEffects.Threshold(ImageEffects.SimpleGrayScale(id.Image), L), id.GetFullName() + "(threshold)" + ".jpg"));
+                    _applyed.Add(new ImageData(ValueEffects.Threshold(ValueEffects.GrayScale(id.Image, false), L), id.GetFullName() + "__threshold" + ".jpg"));
                 }
             }
             else
             {
                 foreach (var id in _images)
                 {
-                    _applyed.Add(new ImageData(ImageEffects.Threshold(id.Image, L), id.GetFullName() + "(threshold)" + ".jpg"));
+                    _applyed.Add(new ImageData(ValueEffects.Threshold(id.Image, L), id.GetFullName() + "__threshold" + ".jpg"));
                 }
             }
             stopwatch.Stop();
@@ -228,15 +230,13 @@ namespace IPA.Front
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             // pega as duas imagens e aplica o efeito para gerar apenas uma imagens
-            _applyed.Add(new ImageData(ImageEffects.Adiction(_images[0].Image, _images[1].Image, p), _images[0].GetFullName() + _images[1].Name + "(addiction)" + ".jpg"));
+            _applyed.Add(new ImageData(ValueEffects.Adiction(_images[0].Image, _images[1].Image, p), "__" + _images[0].GetFullName() + "-" + _images[1].Name + "_addiction" + ".jpg"));
             stopwatch.Stop();
 
             DisplayImagesEffect();
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
-
 
         private void SubtractionForm(object sender, EventArgs e)
         {
@@ -254,11 +254,11 @@ namespace IPA.Front
             // é possível inverter a ordem das imagens para um efeito diferente na subtração
             if (invert)
             {
-                _applyed.Add(new ImageData(ImageEffects.Subtraction(_images[0].Image, _images[1].Image, invert), _images[1].GetFullName() + _images[0].Name + "(subtraction)" + ".jpg"));
+                _applyed.Add(new ImageData(ValueEffects.Subtraction(_images[0].Image, _images[1].Image, invert), "__" + _images[1].GetFullName() + "-" + _images[0].Name + "_subtraction" + ".jpg"));
             }
             else
             {
-                _applyed.Add(new ImageData(ImageEffects.Subtraction(_images[0].Image, _images[1].Image, invert), _images[0].GetFullName() + _images[1].Name + "(subtraction)" + ".jpg"));
+                _applyed.Add(new ImageData(ValueEffects.Subtraction(_images[0].Image, _images[1].Image, invert), "__" + _images[0].GetFullName() + "-" + _images[1].Name + "_subtraction" + ".jpg"));
             }
             stopwatch.Stop();
 
@@ -266,6 +266,88 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
+        #endregion ValueDomain
+
+        #region SpaceDomain
+
+        private void ConvoluctionForm(object sender, EventArgs e)
+        {
+            new ConvoluctionConfigs().ShowDialog();
+        }
+
+        public void Convoluction(int[][] mask, bool red, bool green, bool blue)
+        {
+            if (NoImages()) return;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(
+                    SpaceEffects.Convoluction(id.Image, mask, 2, red, green, blue),
+                    id.GetFullName() + "__personal_convoluction" + ".jpg"));
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        private void BorderDetect(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var mask = new int[][]
+            {
+                new int[] { -1, -1, -1},
+                new int[] { -1,  8, -1},
+                new int[] { -1, -1, -1},
+            };
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(
+                    SpaceEffects.Convoluction(id.Image, mask, 1, true, true, true),
+                    id.GetFullName() + "__border_detect" + ".jpg"));
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        private void ObjectsDetect(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var mask = new int[][]
+            {
+                new int[] { -1, 0, 0},
+                new int[] {  0, 1, 0},
+                new int[] {  0, 0, 0},
+            };
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(
+                    SpaceEffects.Convoluction(id.Image, mask, 1, true, true, true),
+                    id.GetFullName() + "__object_detect" + ".jpg"));
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        #endregion SpaceDomain
 
         #endregion Effects
 
@@ -275,11 +357,13 @@ namespace IPA.Front
         {
             // caixa generica de imagem para ser aplicada no container
             // calculo de proporção para não haver distorção
-            float fw = 100F / h * w;
+            float defHeight = 200F;
+            if (defHeight > h) defHeight = h;
+            float fw = defHeight / h * w;
             return new PictureBox
             {
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                Height = 100,
+                Height = (int)defHeight,
                 Width = (int)fw,
                 Image = image
             };
@@ -348,6 +432,8 @@ namespace IPA.Front
             return false;
         }
 
+
         #endregion Aux
+
     }
 }

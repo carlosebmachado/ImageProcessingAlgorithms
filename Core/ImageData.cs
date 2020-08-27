@@ -18,6 +18,7 @@ namespace IPA.Core
             {
                 Path += splitted[i] + '\\';
             }
+            //Path += "images\\";
             //MessageBox.Show("Name: " + Name + "\nPath: " + Path + "\nFull: "+GetFullName());
         }
 

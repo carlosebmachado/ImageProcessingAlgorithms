@@ -83,13 +83,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtThreshold);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ThresholdConfigs";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurar";
-            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

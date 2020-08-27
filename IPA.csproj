@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ImageData.cs" />
+    <Compile Include="Core\SpaceEffects.cs" />
+    <Compile Include="Core\Util.cs" />
     <Compile Include="Front\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,7 +67,13 @@
     <Compile Include="Front\App.Designer.cs">
       <DependentUpon>App.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\ImageEffects.cs" />
+    <Compile Include="Core\ValueEffects.cs" />
+    <Compile Include="Front\ConvoluctionConfigs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\ConvoluctionConfigs.Designer.cs">
+      <DependentUpon>ConvoluctionConfigs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Front\SubtractionConfigs.cs">
@@ -88,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front\App.resx">
       <DependentUpon>App.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\ConvoluctionConfigs.resx">
+      <DependentUpon>ConvoluctionConfigs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

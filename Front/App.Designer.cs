@@ -45,6 +45,12 @@
             this.tsmiThreshold = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddition = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSubtraction = new System.Windows.Forms.ToolStripMenuItem();
+            this.domínioDeEspaçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiConvoluction = new System.Windows.Forms.ToolStripMenuItem();
+            this.personalizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.detectarBordasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.detectarObjetosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.borrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +70,7 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.arquivoToolStripMenuItem,
             this.tonsDeCinzaSToolStripMenuItem,
+            this.domínioDeEspaçoToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -136,8 +143,8 @@
             this.tsmiAddition,
             this.tsmiSubtraction});
             this.tonsDeCinzaSToolStripMenuItem.Name = "tonsDeCinzaSToolStripMenuItem";
-            this.tonsDeCinzaSToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.tonsDeCinzaSToolStripMenuItem.Text = "Efeitos";
+            this.tonsDeCinzaSToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.tonsDeCinzaSToolStripMenuItem.Text = "Domínio de Valor";
             // 
             // tsmiGrayScaleS
             // 
@@ -181,6 +188,53 @@
             this.tsmiSubtraction.Text = "Subtração";
             this.tsmiSubtraction.Click += new System.EventHandler(this.SubtractionForm);
             // 
+            // domínioDeEspaçoToolStripMenuItem
+            // 
+            this.domínioDeEspaçoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiConvoluction});
+            this.domínioDeEspaçoToolStripMenuItem.Name = "domínioDeEspaçoToolStripMenuItem";
+            this.domínioDeEspaçoToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.domínioDeEspaçoToolStripMenuItem.Text = "Domínio de Espaço";
+            // 
+            // tsmiConvoluction
+            // 
+            this.tsmiConvoluction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.personalizadoToolStripMenuItem,
+            this.detectarBordasToolStripMenuItem1,
+            this.detectarObjetosToolStripMenuItem,
+            this.borrarToolStripMenuItem1});
+            this.tsmiConvoluction.Name = "tsmiConvoluction";
+            this.tsmiConvoluction.Size = new System.Drawing.Size(180, 22);
+            this.tsmiConvoluction.Text = "Convolução";
+            this.tsmiConvoluction.Click += new System.EventHandler(this.ConvoluctionForm);
+            // 
+            // personalizadoToolStripMenuItem
+            // 
+            this.personalizadoToolStripMenuItem.Name = "personalizadoToolStripMenuItem";
+            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.personalizadoToolStripMenuItem.Text = "Personalizado";
+            this.personalizadoToolStripMenuItem.Click += new System.EventHandler(this.ConvoluctionForm);
+            // 
+            // detectarBordasToolStripMenuItem1
+            // 
+            this.detectarBordasToolStripMenuItem1.Name = "detectarBordasToolStripMenuItem1";
+            this.detectarBordasToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.detectarBordasToolStripMenuItem1.Text = "Detectar Bordas";
+            this.detectarBordasToolStripMenuItem1.Click += new System.EventHandler(this.BorderDetect);
+            // 
+            // detectarObjetosToolStripMenuItem
+            // 
+            this.detectarObjetosToolStripMenuItem.Name = "detectarObjetosToolStripMenuItem";
+            this.detectarObjetosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.detectarObjetosToolStripMenuItem.Text = "Detectar Objetos";
+            this.detectarObjetosToolStripMenuItem.Click += new System.EventHandler(this.ObjectsDetect);
+            // 
+            // borrarToolStripMenuItem1
+            // 
+            this.borrarToolStripMenuItem1.Name = "borrarToolStripMenuItem1";
+            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.borrarToolStripMenuItem1.Text = "Borrar";
+            // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -193,14 +247,14 @@
             // créditosToolStripMenuItem
             // 
             this.créditosToolStripMenuItem.Name = "créditosToolStripMenuItem";
-            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.créditosToolStripMenuItem.Text = "Sobre";
             this.créditosToolStripMenuItem.Click += new System.EventHandler(this.About);
             // 
             // sairToolStripMenuItem1
             // 
             this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
-            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(104, 22);
             this.sairToolStripMenuItem1.Text = "Sair";
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.Exit);
             // 
@@ -232,8 +286,8 @@
             // 
             // flpEffect
             // 
-            this.flpEffect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.flpEffect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpEffect.Location = new System.Drawing.Point(6, 16);
             this.flpEffect.Margin = new System.Windows.Forms.Padding(0);
@@ -254,8 +308,8 @@
             // 
             // flpOriginal
             // 
-            this.flpOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.flpOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpOriginal.Location = new System.Drawing.Point(6, 16);
             this.flpOriginal.Margin = new System.Windows.Forms.Padding(0);
@@ -311,6 +365,12 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCleanOriginal;
         private System.Windows.Forms.ToolStripMenuItem tsmiCleanEffect;
         private System.Windows.Forms.ToolStripMenuItem créditosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem domínioDeEspaçoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiConvoluction;
+        private System.Windows.Forms.ToolStripMenuItem personalizadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detectarBordasToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem detectarObjetosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem borrarToolStripMenuItem1;
     }
 }
 
