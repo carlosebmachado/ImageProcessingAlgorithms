@@ -13,7 +13,7 @@ namespace IPA.Front
         private void Confirm(object sender, EventArgs e)
         {
             App app = (App)Application.OpenForms[0];
-            app.Addition((float)trackBar.Value / 100);
+            app.AdditionW((float)trackBar.Value / 100);
             Close();
         }
 

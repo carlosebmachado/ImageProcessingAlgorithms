@@ -38,29 +38,36 @@
             this.tsmiCleanAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCleanOriginal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCleanEffect = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiImageSize = new System.Windows.Forms.ToolStripMenuItem();
             this.tonsDeCinzaSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGrayScaleS = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGrayScaleW = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNegative = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiThreshold = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNegative = new System.Windows.Forms.ToolStripMenuItem();
+            this.adiçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddition = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSubtraction = new System.Windows.Forms.ToolStripMenuItem();
             this.domínioDeEspaçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConvoluction = new System.Windows.Forms.ToolStripMenuItem();
             this.personalizadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.borrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSharpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEdgeEnhance = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdgeDetect1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdgeDetect2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEdgeEnhance = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiObjectDetect = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHighlightingRelief = new System.Windows.Forms.ToolStripMenuItem();
+            this.borrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSharpen = new System.Windows.Forms.ToolStripMenuItem();
             this.erosãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPersonalMorphology = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDilation = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiErosion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMorphOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmoMorphClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.detecçãoDeBordasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.robertsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.robsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.créditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,8 +76,6 @@
             this.flpEffect = new System.Windows.Forms.FlowLayoutPanel();
             this.gbOriginal = new System.Windows.Forms.GroupBox();
             this.flpOriginal = new System.Windows.Forms.FlowLayoutPanel();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiImageSize = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.tlpMain.SuspendLayout();
             this.gbEffect.SuspendLayout();
@@ -104,14 +109,14 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.LoadFiles);
             // 
             // salvarToolStripMenuItem
             // 
             this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.salvarToolStripMenuItem.Text = "Salvar";
             this.salvarToolStripMenuItem.Click += new System.EventHandler(this.SaveFiles);
             // 
@@ -122,7 +127,7 @@
             this.tsmiCleanOriginal,
             this.tsmiCleanEffect});
             this.tsmiClean.Name = "tsmiClean";
-            this.tsmiClean.Size = new System.Drawing.Size(180, 22);
+            this.tsmiClean.Size = new System.Drawing.Size(111, 22);
             this.tsmiClean.Text = "Limpar";
             // 
             // tsmiCleanAll
@@ -146,13 +151,29 @@
             this.tsmiCleanEffect.Text = "Efeito";
             this.tsmiCleanEffect.Click += new System.EventHandler(this.CleanEffect);
             // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiImageSize});
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.editarToolStripMenuItem.Text = "Editar";
+            // 
+            // tsmiImageSize
+            // 
+            this.tsmiImageSize.Name = "tsmiImageSize";
+            this.tsmiImageSize.Size = new System.Drawing.Size(240, 22);
+            this.tsmiImageSize.Text = "Mudar tamanho das miniaturas";
+            this.tsmiImageSize.Click += new System.EventHandler(this.ImageSize);
+            // 
             // tonsDeCinzaSToolStripMenuItem
             // 
             this.tonsDeCinzaSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiGrayScaleS,
             this.tsmiGrayScaleW,
-            this.tsmiNegative,
             this.tsmiThreshold,
+            this.tsmiNegative,
+            this.adiçãoToolStripMenuItem,
             this.tsmiAddition,
             this.tsmiSubtraction});
             this.tonsDeCinzaSToolStripMenuItem.Name = "tonsDeCinzaSToolStripMenuItem";
@@ -162,50 +183,58 @@
             // tsmiGrayScaleS
             // 
             this.tsmiGrayScaleS.Name = "tsmiGrayScaleS";
-            this.tsmiGrayScaleS.Size = new System.Drawing.Size(180, 22);
-            this.tsmiGrayScaleS.Text = "Tons de cinza (S)";
+            this.tsmiGrayScaleS.Size = new System.Drawing.Size(188, 22);
+            this.tsmiGrayScaleS.Text = "1.1 - Tons de cinza (S)";
             this.tsmiGrayScaleS.Click += new System.EventHandler(this.GrayScaleS);
             // 
             // tsmiGrayScaleW
             // 
             this.tsmiGrayScaleW.Name = "tsmiGrayScaleW";
-            this.tsmiGrayScaleW.Size = new System.Drawing.Size(180, 22);
-            this.tsmiGrayScaleW.Text = "Tons de cinza (P)";
+            this.tsmiGrayScaleW.Size = new System.Drawing.Size(188, 22);
+            this.tsmiGrayScaleW.Text = "1.2 - Tons de cinza (P)";
             this.tsmiGrayScaleW.Click += new System.EventHandler(this.GrayScaleW);
-            // 
-            // tsmiNegative
-            // 
-            this.tsmiNegative.Name = "tsmiNegative";
-            this.tsmiNegative.Size = new System.Drawing.Size(180, 22);
-            this.tsmiNegative.Text = "Negativa";
-            this.tsmiNegative.Click += new System.EventHandler(this.Negative);
             // 
             // tsmiThreshold
             // 
             this.tsmiThreshold.Name = "tsmiThreshold";
-            this.tsmiThreshold.Size = new System.Drawing.Size(180, 22);
-            this.tsmiThreshold.Text = "Limiarização";
+            this.tsmiThreshold.Size = new System.Drawing.Size(188, 22);
+            this.tsmiThreshold.Text = "2 - Limiarização";
             this.tsmiThreshold.Click += new System.EventHandler(this.ThresholdForm);
+            // 
+            // tsmiNegative
+            // 
+            this.tsmiNegative.Name = "tsmiNegative";
+            this.tsmiNegative.Size = new System.Drawing.Size(188, 22);
+            this.tsmiNegative.Text = "3 - Negativa";
+            this.tsmiNegative.Click += new System.EventHandler(this.Negative);
+            // 
+            // adiçãoToolStripMenuItem
+            // 
+            this.adiçãoToolStripMenuItem.Name = "adiçãoToolStripMenuItem";
+            this.adiçãoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.adiçãoToolStripMenuItem.Text = "4 - Adição";
+            this.adiçãoToolStripMenuItem.Click += new System.EventHandler(this.Addition);
             // 
             // tsmiAddition
             // 
             this.tsmiAddition.Name = "tsmiAddition";
-            this.tsmiAddition.Size = new System.Drawing.Size(180, 22);
-            this.tsmiAddition.Text = "Adição";
+            this.tsmiAddition.Size = new System.Drawing.Size(188, 22);
+            this.tsmiAddition.Text = "5 - Adição (P)";
             this.tsmiAddition.Click += new System.EventHandler(this.AdditionForm);
             // 
             // tsmiSubtraction
             // 
             this.tsmiSubtraction.Name = "tsmiSubtraction";
-            this.tsmiSubtraction.Size = new System.Drawing.Size(180, 22);
-            this.tsmiSubtraction.Text = "Subtração";
+            this.tsmiSubtraction.Size = new System.Drawing.Size(188, 22);
+            this.tsmiSubtraction.Text = "6 - Subtração";
             this.tsmiSubtraction.Click += new System.EventHandler(this.SubtractionForm);
             // 
             // domínioDeEspaçoToolStripMenuItem
             // 
             this.domínioDeEspaçoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiConvoluction,
-            this.erosãoToolStripMenuItem});
+            this.erosãoToolStripMenuItem,
+            this.detecçãoDeBordasToolStripMenuItem});
             this.domínioDeEspaçoToolStripMenuItem.Name = "domínioDeEspaçoToolStripMenuItem";
             this.domínioDeEspaçoToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
             this.domínioDeEspaçoToolStripMenuItem.Text = "Domínio de Espaço";
@@ -214,13 +243,13 @@
             // 
             this.tsmiConvoluction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personalizadoToolStripMenuItem,
-            this.borrarToolStripMenuItem1,
-            this.tsmiSharpen,
-            this.tsmiEdgeEnhance,
             this.tsmiEdgeDetect1,
             this.tsmiEdgeDetect2,
+            this.tsmiEdgeEnhance,
             this.tsmiObjectDetect,
-            this.tsmiHighlightingRelief});
+            this.tsmiHighlightingRelief,
+            this.borrarToolStripMenuItem1,
+            this.tsmiSharpen});
             this.tsmiConvoluction.Name = "tsmiConvoluction";
             this.tsmiConvoluction.Size = new System.Drawing.Size(180, 22);
             this.tsmiConvoluction.Text = "Convolução";
@@ -229,58 +258,58 @@
             // personalizadoToolStripMenuItem
             // 
             this.personalizadoToolStripMenuItem.Name = "personalizadoToolStripMenuItem";
-            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.personalizadoToolStripMenuItem.Text = "Personalizado";
             this.personalizadoToolStripMenuItem.Click += new System.EventHandler(this.ConvoluctionForm);
-            // 
-            // borrarToolStripMenuItem1
-            // 
-            this.borrarToolStripMenuItem1.Name = "borrarToolStripMenuItem1";
-            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.borrarToolStripMenuItem1.Text = "Borrar";
-            this.borrarToolStripMenuItem1.Click += new System.EventHandler(this.Blur);
-            // 
-            // tsmiSharpen
-            // 
-            this.tsmiSharpen.Name = "tsmiSharpen";
-            this.tsmiSharpen.Size = new System.Drawing.Size(180, 22);
-            this.tsmiSharpen.Text = "Aguçar";
-            this.tsmiSharpen.Click += new System.EventHandler(this.Sharpen);
-            // 
-            // tsmiEdgeEnhance
-            // 
-            this.tsmiEdgeEnhance.Name = "tsmiEdgeEnhance";
-            this.tsmiEdgeEnhance.Size = new System.Drawing.Size(180, 22);
-            this.tsmiEdgeEnhance.Text = "Realçar Bordas";
-            this.tsmiEdgeEnhance.Click += new System.EventHandler(this.EdgeEnhance);
             // 
             // tsmiEdgeDetect1
             // 
             this.tsmiEdgeDetect1.Name = "tsmiEdgeDetect1";
-            this.tsmiEdgeDetect1.Size = new System.Drawing.Size(180, 22);
-            this.tsmiEdgeDetect1.Text = "Detectar Bordas 1";
-            this.tsmiEdgeDetect1.Click += new System.EventHandler(this.EdgeDetect1);
+            this.tsmiEdgeDetect1.Size = new System.Drawing.Size(177, 22);
+            this.tsmiEdgeDetect1.Text = "7 - Pontos Salientes";
+            this.tsmiEdgeDetect1.Click += new System.EventHandler(this.SalientPoints);
             // 
             // tsmiEdgeDetect2
             // 
             this.tsmiEdgeDetect2.Name = "tsmiEdgeDetect2";
-            this.tsmiEdgeDetect2.Size = new System.Drawing.Size(180, 22);
-            this.tsmiEdgeDetect2.Text = "Detectar Bordas 2";
+            this.tsmiEdgeDetect2.Size = new System.Drawing.Size(177, 22);
+            this.tsmiEdgeDetect2.Text = "Detectar Bordas (C)";
             this.tsmiEdgeDetect2.Click += new System.EventHandler(this.EdgeDetect2);
+            // 
+            // tsmiEdgeEnhance
+            // 
+            this.tsmiEdgeEnhance.Name = "tsmiEdgeEnhance";
+            this.tsmiEdgeEnhance.Size = new System.Drawing.Size(177, 22);
+            this.tsmiEdgeEnhance.Text = "Realçar Bordas";
+            this.tsmiEdgeEnhance.Click += new System.EventHandler(this.EdgeEnhance);
             // 
             // tsmiObjectDetect
             // 
             this.tsmiObjectDetect.Name = "tsmiObjectDetect";
-            this.tsmiObjectDetect.Size = new System.Drawing.Size(180, 22);
+            this.tsmiObjectDetect.Size = new System.Drawing.Size(177, 22);
             this.tsmiObjectDetect.Text = "Detectar Objetos";
             this.tsmiObjectDetect.Click += new System.EventHandler(this.ObjectsDetect);
             // 
             // tsmiHighlightingRelief
             // 
             this.tsmiHighlightingRelief.Name = "tsmiHighlightingRelief";
-            this.tsmiHighlightingRelief.Size = new System.Drawing.Size(180, 22);
+            this.tsmiHighlightingRelief.Size = new System.Drawing.Size(177, 22);
             this.tsmiHighlightingRelief.Text = "Destacar Relevo";
             this.tsmiHighlightingRelief.Click += new System.EventHandler(this.HighlightingRelief);
+            // 
+            // borrarToolStripMenuItem1
+            // 
+            this.borrarToolStripMenuItem1.Name = "borrarToolStripMenuItem1";
+            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.borrarToolStripMenuItem1.Text = "Borrar";
+            this.borrarToolStripMenuItem1.Click += new System.EventHandler(this.Blur);
+            // 
+            // tsmiSharpen
+            // 
+            this.tsmiSharpen.Name = "tsmiSharpen";
+            this.tsmiSharpen.Size = new System.Drawing.Size(177, 22);
+            this.tsmiSharpen.Text = "Aguçar";
+            this.tsmiSharpen.Click += new System.EventHandler(this.Sharpen);
             // 
             // erosãoToolStripMenuItem
             // 
@@ -297,37 +326,68 @@
             // tsmiPersonalMorphology
             // 
             this.tsmiPersonalMorphology.Name = "tsmiPersonalMorphology";
-            this.tsmiPersonalMorphology.Size = new System.Drawing.Size(180, 22);
+            this.tsmiPersonalMorphology.Size = new System.Drawing.Size(172, 22);
             this.tsmiPersonalMorphology.Text = "Personalizado";
             this.tsmiPersonalMorphology.Click += new System.EventHandler(this.CustonMorphologyForm);
             // 
             // tsmiDilation
             // 
             this.tsmiDilation.Name = "tsmiDilation";
-            this.tsmiDilation.Size = new System.Drawing.Size(180, 22);
-            this.tsmiDilation.Text = "Dilatação";
+            this.tsmiDilation.Size = new System.Drawing.Size(172, 22);
+            this.tsmiDilation.Text = "8 - Dilatação";
             this.tsmiDilation.Click += new System.EventHandler(this.Dilation);
             // 
             // tsmiErosion
             // 
             this.tsmiErosion.Name = "tsmiErosion";
-            this.tsmiErosion.Size = new System.Drawing.Size(180, 22);
-            this.tsmiErosion.Text = "Erosão";
+            this.tsmiErosion.Size = new System.Drawing.Size(172, 22);
+            this.tsmiErosion.Text = "9 - Erosão";
             this.tsmiErosion.Click += new System.EventHandler(this.Erosion);
             // 
             // tsmiMorphOpen
             // 
             this.tsmiMorphOpen.Name = "tsmiMorphOpen";
-            this.tsmiMorphOpen.Size = new System.Drawing.Size(180, 22);
-            this.tsmiMorphOpen.Text = "Abertura";
+            this.tsmiMorphOpen.Size = new System.Drawing.Size(172, 22);
+            this.tsmiMorphOpen.Text = "10.1 - Abertura";
             this.tsmiMorphOpen.Click += new System.EventHandler(this.MorphOpen);
             // 
             // tsmoMorphClose
             // 
             this.tsmoMorphClose.Name = "tsmoMorphClose";
-            this.tsmoMorphClose.Size = new System.Drawing.Size(180, 22);
-            this.tsmoMorphClose.Text = "Fechamento";
+            this.tsmoMorphClose.Size = new System.Drawing.Size(172, 22);
+            this.tsmoMorphClose.Text = "10.2 - Fechamento";
             this.tsmoMorphClose.Click += new System.EventHandler(this.MorphClose);
+            // 
+            // detecçãoDeBordasToolStripMenuItem
+            // 
+            this.detecçãoDeBordasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.robertsToolStripMenuItem,
+            this.sobelToolStripMenuItem,
+            this.robsonToolStripMenuItem});
+            this.detecçãoDeBordasToolStripMenuItem.Name = "detecçãoDeBordasToolStripMenuItem";
+            this.detecçãoDeBordasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.detecçãoDeBordasToolStripMenuItem.Text = "Detecção de Bordas";
+            // 
+            // robertsToolStripMenuItem
+            // 
+            this.robertsToolStripMenuItem.Name = "robertsToolStripMenuItem";
+            this.robertsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.robertsToolStripMenuItem.Text = "Roberts";
+            this.robertsToolStripMenuItem.Click += new System.EventHandler(this.Roberts);
+            // 
+            // sobelToolStripMenuItem
+            // 
+            this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
+            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sobelToolStripMenuItem.Text = "Sobel";
+            this.sobelToolStripMenuItem.Click += new System.EventHandler(this.Sobel);
+            // 
+            // robsonToolStripMenuItem
+            // 
+            this.robsonToolStripMenuItem.Name = "robsonToolStripMenuItem";
+            this.robsonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.robsonToolStripMenuItem.Text = "Robinson";
+            this.robsonToolStripMenuItem.Click += new System.EventHandler(this.Robinson);
             // 
             // sairToolStripMenuItem
             // 
@@ -341,14 +401,14 @@
             // créditosToolStripMenuItem
             // 
             this.créditosToolStripMenuItem.Name = "créditosToolStripMenuItem";
-            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.créditosToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.créditosToolStripMenuItem.Text = "Sobre";
             this.créditosToolStripMenuItem.Click += new System.EventHandler(this.About);
             // 
             // sairToolStripMenuItem1
             // 
             this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
-            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(104, 22);
             this.sairToolStripMenuItem1.Text = "Sair";
             this.sairToolStripMenuItem1.Click += new System.EventHandler(this.Exit);
             // 
@@ -410,21 +470,6 @@
             this.flpOriginal.Name = "flpOriginal";
             this.flpOriginal.Size = new System.Drawing.Size(345, 401);
             this.flpOriginal.TabIndex = 5;
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiImageSize});
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.editarToolStripMenuItem.Text = "Editar";
-            // 
-            // tsmiImageSize
-            // 
-            this.tsmiImageSize.Name = "tsmiImageSize";
-            this.tsmiImageSize.Size = new System.Drawing.Size(240, 22);
-            this.tsmiImageSize.Text = "Mudar tamanho das miniaturas";
-            this.tsmiImageSize.Click += new System.EventHandler(this.ImageSize);
             // 
             // App
             // 
@@ -492,6 +537,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPersonalMorphology;
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiImageSize;
+        private System.Windows.Forms.ToolStripMenuItem adiçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem detecçãoDeBordasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem robertsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sobelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem robsonToolStripMenuItem;
     }
 }
 

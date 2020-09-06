@@ -16,8 +16,8 @@ namespace IPA.Front
         private const int BLUR = 0;
         private const int SHARPEN = 1;
         private const int EDGE_ENHANCE = 2;
-        private const int EDGE_DETECT_1 = 3;
-        private const int EDGE_DETECT_2 = 4;
+        private const int SALIENT_POINTS = 3;
+        private const int EDGE_DETECT_CONV = 4;
         private const int OBJECT_DETECT = 5;
         private const int HIGHLIGHTING_RELIEF = 6;
 
@@ -88,7 +88,6 @@ namespace IPA.Front
                 }
             }
         }
-
         private void SaveFiles(object sender, EventArgs e)
         {
             if (NoImages()) return;
@@ -109,7 +108,6 @@ namespace IPA.Front
             }
             _applyed.Clear();
         }
-
         private void CleanAll(object sender, EventArgs e)
         {
             // reseta todos os dados
@@ -118,38 +116,32 @@ namespace IPA.Front
             _images.Clear();
             _applyed.Clear();
         }
-
         private void CleanOriginal(object sender, EventArgs e)
         {
             // reseta os dados de imagens carregadas
             flpOriginal.Controls.Clear();
             _images.Clear();
         }
-
         private void CleanEffect(object sender, EventArgs e)
         {
             // reseta os dados de imagens com efeitos
             flpEffect.Controls.Clear();
             _applyed.Clear();
         }
-
         private void ImageSize(object sender, EventArgs e)
         {
             new SelectImageSize().ShowDialog();
         }
-
         public void SetImageSize(float w, bool allowBigger)
         {
             _imgHeight = w;
             _allowBigger = allowBigger;
             DisplayImages();
         }
-
         private void Exit(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void About(object sender, EventArgs e)
         {
             new About().ShowDialog();
@@ -178,7 +170,6 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
         private void GrayScaleW(object sender, EventArgs e)
         {
             if (NoImages()) return;
@@ -195,7 +186,6 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
         private void Negative(object sender, EventArgs e)
         {
             if (NoImages()) return;
@@ -212,12 +202,10 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
         private void ThresholdForm(object sender, EventArgs e)
         {
             new ThresholdConfigs().ShowDialog();
         }
-
         public void Threshold(bool bw, int L)
         {
             if (NoImages()) return;
@@ -245,39 +233,50 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
         private void AdditionForm(object sender, EventArgs e)
         {
             new AdditionConfigs().ShowDialog();
         }
-
-        public void Addition(float p)
+        public void AdditionW(float p)
         {
             if (NoImages()) return;
             if (CorrectImageAmount()) return;
-            if (CompatibleImages()) return;
+            if (NotCompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             // pega as duas imagens e aplica o efeito para gerar apenas uma imagens
-            _applyed.Add(new ImageData(ValueEffects.Adiction(_images[0].Image, _images[1].Image, p), "__" + _images[0].GetFullName() + "-" + _images[1].Name + "_addiction" + ".jpg"));
+            _applyed.Add(new ImageData(ValueEffects.AdictionWeighted(_images[0].Image, _images[1].Image, p), "__" + _images[0].GetFullName() + "-" + _images[1].Name + "_addiction_weighted" + ".jpg"));
             stopwatch.Stop();
 
             DisplayImagesEffect();
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+        private void Addition(object sender, EventArgs e) {
+            if (NoImages()) return;
+            if (CorrectImageAmount()) return;
+            if (NotCompatibleImages()) return;
 
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            // pega as duas imagens e aplica o efeito para gerar apenas uma imagens
+            _applyed.Add(new ImageData(ValueEffects.Adiction(_images[0].Image, _images[1].Image), "__" + _images[0].GetFullName() + "-" + _images[1].Name + "_addiction" + ".jpg"));
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
         private void SubtractionForm(object sender, EventArgs e)
         {
             new SubtractionConfigs().ShowDialog();
         }
-
         public void Subtraction(bool invert)
         {
             if (NoImages()) return;
             if (CorrectImageAmount()) return;
-            if (CompatibleImages()) return;
+            if (NotCompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -307,7 +306,6 @@ namespace IPA.Front
         {
             new ConvoluctionConfigs().ShowDialog();
         }
-
         public void Convoluction(int[][] mask, int div, bool red, bool green, bool blue)
         {
             if (NoImages()) return;
@@ -326,7 +324,6 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
         private void Blur(object sender, EventArgs e)
         {
             var mask = new int[][]
@@ -339,7 +336,6 @@ namespace IPA.Front
             };
             ConvPreEffects(mask, BLUR);
         }
-
         private void Sharpen(object sender, EventArgs e)
         {
             var mask = new int[][]
@@ -350,7 +346,6 @@ namespace IPA.Front
             };
             ConvPreEffects(mask, SHARPEN);
         }
-
         private void EdgeEnhance(object sender, EventArgs e)
         {
             var mask = new int[][]
@@ -361,8 +356,7 @@ namespace IPA.Front
             };
             ConvPreEffects(mask, EDGE_ENHANCE);
         }
-
-        private void EdgeDetect1(object sender, EventArgs e)
+        private void SalientPoints(object sender, EventArgs e)
         {
             var mask = new int[][]
             {
@@ -370,9 +364,8 @@ namespace IPA.Front
                 new int[] { -1,  8, -1},
                 new int[] { -1, -1, -1}
             };
-            ConvPreEffects(mask, EDGE_DETECT_1);
+            ConvPreEffects(mask, SALIENT_POINTS);
         }
-
         private void EdgeDetect2(object sender, EventArgs e)
         {
             var mask = new int[][]
@@ -381,9 +374,8 @@ namespace IPA.Front
                 new int[] { 1, -4, 1},
                 new int[] { 0,  1, 0}
             };
-            ConvPreEffects(mask, EDGE_DETECT_2);
+            ConvPreEffects(mask, EDGE_DETECT_CONV);
         }
-
         private void ObjectsDetect(object sender, EventArgs e)
         {
             var mask = new int[][]
@@ -394,7 +386,6 @@ namespace IPA.Front
             };
             ConvPreEffects(mask, OBJECT_DETECT);
         }
-
         private void HighlightingRelief(object sender, EventArgs e)
         {
             var mask = new int[][]
@@ -405,7 +396,6 @@ namespace IPA.Front
             };
             ConvPreEffects(mask, HIGHLIGHTING_RELIEF);
         }
-
         private void ConvPreEffects(int[][] mask, int effect)
         {
             if (NoImages()) return;
@@ -431,15 +421,15 @@ namespace IPA.Front
                             SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
                             id.GetFullName() + "__edge_enhance" + ".jpg"));
                         break;
-                    case EDGE_DETECT_1:
+                    case SALIENT_POINTS:
                         _applyed.Add(new ImageData(
                             SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
                             id.GetFullName() + "__edge_detect1" + ".jpg"));
                         break;
-                    case EDGE_DETECT_2:
+                    case EDGE_DETECT_CONV:
                         _applyed.Add(new ImageData(
                             SpaceEffects.Convoluction(id.Image, mask, 1, 1, true, true, true),
-                            id.GetFullName() + "__edge_detect" + ".jpg"));
+                            id.GetFullName() + "__edge_detect2" + ".jpg"));
                         break;
                     case OBJECT_DETECT:
                         _applyed.Add(new ImageData(
@@ -471,7 +461,6 @@ namespace IPA.Front
         {
             new MorphologyConfig().ShowDialog();
         }
-
         public void CustomMorphology(bool erosion, int[][] mask, int size)
         {
             if (NoImages()) return;
@@ -484,13 +473,13 @@ namespace IPA.Front
                 {
                     _applyed.Add(new ImageData(
                         SpaceEffects.Erosion(id.Image, mask, size),
-                        id.GetFullName() + "__custom_morphology" + ".jpg"));
+                        id.GetFullName() + "__custom_erosion_morphology" + ".jpg"));
                 }
                 else
                 {
                     _applyed.Add(new ImageData(
                         SpaceEffects.Dilation(id.Image, mask, size),
-                        id.GetFullName() + "__custom_morphology" + ".jpg"));
+                        id.GetFullName() + "__custom_dilation_morphology" + ".jpg"));
                 }
             }
             stopwatch.Stop();
@@ -499,7 +488,6 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
-
         private void Dilation(object sender, EventArgs e)
         {
             MorphEffect(DILATION);
@@ -516,7 +504,6 @@ namespace IPA.Front
         {
             MorphEffect(MORPH_CLOSE);
         }
-
         private void MorphEffect(int effect)
         {
 
@@ -549,12 +536,12 @@ namespace IPA.Front
                     case MORPH_OPEN:
                         _applyed.Add(new ImageData(
                             SpaceEffects.Dilation(SpaceEffects.Erosion(id.Image, mask, 1), mask, 1),
-                            id.GetFullName() + "__abertura" + ".jpg"));
+                            id.GetFullName() + "__opening" + ".jpg"));
                         break;
                     case MORPH_CLOSE:
                         _applyed.Add(new ImageData(
                             SpaceEffects.Erosion(SpaceEffects.Dilation(id.Image, mask, 1), mask, 1),
-                            id.GetFullName() + "__fechamento" + ".jpg"));
+                            id.GetFullName() + "__closing" + ".jpg"));
                         break;
                     default:
                         break;
@@ -568,6 +555,67 @@ namespace IPA.Front
         }
 
         #endregion Morphology
+
+        #region EdgeDetect
+
+        private void Roberts(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(
+                    SpaceEffects.Roberts(id.Image),
+                    id.GetFullName() + "__edge_detect_roberts" + ".jpg"));
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        private void Sobel(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(
+                    SpaceEffects.Sobel(id.Image),
+                    id.GetFullName() + "__edge_detect_sobel" + ".jpg"));
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        private void Robinson(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(
+                    SpaceEffects.Robinson(id.Image),
+                    id.GetFullName() + "__edge_detect_sobel" + ".jpg"));
+            }
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        #endregion EdgeDetect
 
         #endregion SpaceDomain
 
@@ -627,7 +675,7 @@ namespace IPA.Front
             }
         }
 
-        private bool CompatibleImages()
+        private bool NotCompatibleImages()
         {
             if (!(_images[0].Image.Width < _images[1].Image.Width && _images[0].Image.Height < _images[1].Image.Height ||
                   _images[1].Image.Width < _images[0].Image.Width && _images[1].Image.Height < _images[0].Image.Height ||
@@ -673,6 +721,5 @@ namespace IPA.Front
 
 
         #endregion Aux
-
     }
 }

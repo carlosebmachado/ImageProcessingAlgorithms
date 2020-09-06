@@ -40,8 +40,8 @@
             this.richTextBox.TabIndex = 1;
             this.richTextBox.TabStop = false;
             this.richTextBox.Text = "Projeto desenvolvido na disciplina de Processamento Digital de Imagens.\n\nUNIVALI " +
-    "- Universidade do Vale do Itajaí\nCurso de Ciência da Computação\nAutor: Carlos Ed" +
-    "uardo de Borba Machado\n";
+    "- Universidade do Vale do Itajaí\nCurso de Ciência da Computação\nEstudante: Carlo" +
+    "s Eduardo de Borba Machado";
             // 
             // About
             // 
