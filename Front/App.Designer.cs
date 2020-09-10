@@ -109,14 +109,14 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.LoadFiles);
             // 
             // salvarToolStripMenuItem
             // 
             this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salvarToolStripMenuItem.Text = "Salvar";
             this.salvarToolStripMenuItem.Click += new System.EventHandler(this.SaveFiles);
             // 
@@ -127,7 +127,7 @@
             this.tsmiCleanOriginal,
             this.tsmiCleanEffect});
             this.tsmiClean.Name = "tsmiClean";
-            this.tsmiClean.Size = new System.Drawing.Size(111, 22);
+            this.tsmiClean.Size = new System.Drawing.Size(180, 22);
             this.tsmiClean.Text = "Limpar";
             // 
             // tsmiCleanAll
@@ -258,56 +258,56 @@
             // personalizadoToolStripMenuItem
             // 
             this.personalizadoToolStripMenuItem.Name = "personalizadoToolStripMenuItem";
-            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.personalizadoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.personalizadoToolStripMenuItem.Text = "Personalizado";
             this.personalizadoToolStripMenuItem.Click += new System.EventHandler(this.ConvoluctionForm);
             // 
             // tsmiEdgeDetect1
             // 
             this.tsmiEdgeDetect1.Name = "tsmiEdgeDetect1";
-            this.tsmiEdgeDetect1.Size = new System.Drawing.Size(177, 22);
+            this.tsmiEdgeDetect1.Size = new System.Drawing.Size(180, 22);
             this.tsmiEdgeDetect1.Text = "7 - Pontos Salientes";
             this.tsmiEdgeDetect1.Click += new System.EventHandler(this.SalientPoints);
             // 
             // tsmiEdgeDetect2
             // 
             this.tsmiEdgeDetect2.Name = "tsmiEdgeDetect2";
-            this.tsmiEdgeDetect2.Size = new System.Drawing.Size(177, 22);
+            this.tsmiEdgeDetect2.Size = new System.Drawing.Size(180, 22);
             this.tsmiEdgeDetect2.Text = "Detectar Bordas (C)";
             this.tsmiEdgeDetect2.Click += new System.EventHandler(this.EdgeDetect2);
             // 
             // tsmiEdgeEnhance
             // 
             this.tsmiEdgeEnhance.Name = "tsmiEdgeEnhance";
-            this.tsmiEdgeEnhance.Size = new System.Drawing.Size(177, 22);
+            this.tsmiEdgeEnhance.Size = new System.Drawing.Size(180, 22);
             this.tsmiEdgeEnhance.Text = "Realçar Bordas";
             this.tsmiEdgeEnhance.Click += new System.EventHandler(this.EdgeEnhance);
             // 
             // tsmiObjectDetect
             // 
             this.tsmiObjectDetect.Name = "tsmiObjectDetect";
-            this.tsmiObjectDetect.Size = new System.Drawing.Size(177, 22);
+            this.tsmiObjectDetect.Size = new System.Drawing.Size(180, 22);
             this.tsmiObjectDetect.Text = "Detectar Objetos";
             this.tsmiObjectDetect.Click += new System.EventHandler(this.ObjectsDetect);
             // 
             // tsmiHighlightingRelief
             // 
             this.tsmiHighlightingRelief.Name = "tsmiHighlightingRelief";
-            this.tsmiHighlightingRelief.Size = new System.Drawing.Size(177, 22);
+            this.tsmiHighlightingRelief.Size = new System.Drawing.Size(180, 22);
             this.tsmiHighlightingRelief.Text = "Destacar Relevo";
             this.tsmiHighlightingRelief.Click += new System.EventHandler(this.HighlightingRelief);
             // 
             // borrarToolStripMenuItem1
             // 
             this.borrarToolStripMenuItem1.Name = "borrarToolStripMenuItem1";
-            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(177, 22);
+            this.borrarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.borrarToolStripMenuItem1.Text = "Borrar";
             this.borrarToolStripMenuItem1.Click += new System.EventHandler(this.Blur);
             // 
             // tsmiSharpen
             // 
             this.tsmiSharpen.Name = "tsmiSharpen";
-            this.tsmiSharpen.Size = new System.Drawing.Size(177, 22);
+            this.tsmiSharpen.Size = new System.Drawing.Size(180, 22);
             this.tsmiSharpen.Text = "Aguçar";
             this.tsmiSharpen.Click += new System.EventHandler(this.Sharpen);
             // 
@@ -372,21 +372,21 @@
             // 
             this.robertsToolStripMenuItem.Name = "robertsToolStripMenuItem";
             this.robertsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.robertsToolStripMenuItem.Text = "Roberts";
+            this.robertsToolStripMenuItem.Text = "11 - Roberts";
             this.robertsToolStripMenuItem.Click += new System.EventHandler(this.Roberts);
             // 
             // sobelToolStripMenuItem
             // 
             this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
             this.sobelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sobelToolStripMenuItem.Text = "Sobel";
+            this.sobelToolStripMenuItem.Text = "12 - Sobel";
             this.sobelToolStripMenuItem.Click += new System.EventHandler(this.Sobel);
             // 
             // robsonToolStripMenuItem
             // 
             this.robsonToolStripMenuItem.Name = "robsonToolStripMenuItem";
             this.robsonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.robsonToolStripMenuItem.Text = "Robinson";
+            this.robsonToolStripMenuItem.Text = "13 - Robinson";
             this.robsonToolStripMenuItem.Click += new System.EventHandler(this.Robinson);
             // 
             // sairToolStripMenuItem

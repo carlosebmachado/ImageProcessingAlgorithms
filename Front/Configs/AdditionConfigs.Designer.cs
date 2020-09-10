@@ -47,6 +47,7 @@
             this.trackBar.Name = "trackBar";
             this.trackBar.Size = new System.Drawing.Size(238, 45);
             this.trackBar.TabIndex = 0;
+            this.trackBar.TabStop = false;
             this.trackBar.Value = 50;
             this.trackBar.ValueChanged += new System.EventHandler(this.ValueChanged);
             // 
@@ -118,10 +119,11 @@
             this.btnConfirm.Location = new System.Drawing.Point(173, 126);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 8;
+            this.btnConfirm.TabIndex = 0;
             this.btnConfirm.Text = "Confirmar";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.Confirm);
+            this.btnConfirm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterKeyPress);
             // 
             // AdditionConfigs
             // 
@@ -145,7 +147,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Configurar adição";
+            this.Text = "Configurar Adição";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -42,7 +42,7 @@
             this.cbThreshold.Location = new System.Drawing.Point(15, 32);
             this.cbThreshold.Name = "cbThreshold";
             this.cbThreshold.Size = new System.Drawing.Size(168, 17);
-            this.cbThreshold.TabIndex = 5;
+            this.cbThreshold.TabIndex = 1;
             this.cbThreshold.Text = "Converter para preto e branco";
             this.cbThreshold.UseVisualStyleBackColor = true;
             // 
@@ -60,15 +60,16 @@
             this.txtThreshold.Location = new System.Drawing.Point(76, 6);
             this.txtThreshold.Name = "txtThreshold";
             this.txtThreshold.Size = new System.Drawing.Size(101, 20);
-            this.txtThreshold.TabIndex = 3;
+            this.txtThreshold.TabIndex = 0;
             this.txtThreshold.Text = "150";
+            this.txtThreshold.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterKeyPress);
             // 
             // btnConfirm
             // 
             this.btnConfirm.Location = new System.Drawing.Point(102, 64);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 6;
+            this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Confirmar";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.Confirm);
@@ -90,7 +91,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Configurar";
+            this.Text = "Configurar Limiarização";
             this.ResumeLayout(false);
             this.PerformLayout();
 

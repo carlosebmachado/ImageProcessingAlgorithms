@@ -40,7 +40,7 @@
             this.btnConfirm.Location = new System.Drawing.Point(182, 99);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 0;
+            this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Confirmar";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.Confirm);
@@ -50,8 +50,9 @@
             this.txtSize.Location = new System.Drawing.Point(182, 29);
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(75, 20);
-            this.txtSize.TabIndex = 2;
+            this.txtSize.TabIndex = 0;
             this.txtSize.Text = "200";
+            this.txtSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterKeyPress);
             // 
             // richTextBox1
             // 
@@ -60,6 +61,7 @@
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(163, 109);
             this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.TabStop = false;
             this.richTextBox1.Text = "Digite a altura e a largura será calculada proporcionamente para cada imagem. Ao " +
     "clicar em permitir, significa que imagens podem ser redimensionada para um taman" +
     "ho além de seu tamanho original.";
@@ -72,7 +74,7 @@
             this.cbAllow.Location = new System.Drawing.Point(182, 55);
             this.cbAllow.Name = "cbAllow";
             this.cbAllow.Size = new System.Drawing.Size(60, 17);
-            this.cbAllow.TabIndex = 4;
+            this.cbAllow.TabIndex = 1;
             this.cbAllow.Text = "Permitir";
             this.cbAllow.UseVisualStyleBackColor = true;
             // 

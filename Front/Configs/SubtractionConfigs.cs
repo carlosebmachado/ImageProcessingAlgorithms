@@ -16,5 +16,13 @@ namespace IPA.Front
             app.Subtraction(cbSubtraction.Checked);
             Close();
         }
+
+        private void EnterKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals((char)13))
+            {
+                Confirm(new object(), new EventArgs());
+            }
+        }
     }
 }

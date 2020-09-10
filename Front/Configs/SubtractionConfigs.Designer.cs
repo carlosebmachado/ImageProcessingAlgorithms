@@ -37,7 +37,7 @@
             this.btnConfirm.Location = new System.Drawing.Point(137, 46);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 0;
+            this.btnConfirm.TabIndex = 1;
             this.btnConfirm.Text = "Confirmar";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.Confirm);
@@ -48,9 +48,10 @@
             this.cbSubtraction.Location = new System.Drawing.Point(12, 12);
             this.cbSubtraction.Name = "cbSubtraction";
             this.cbSubtraction.Size = new System.Drawing.Size(200, 17);
-            this.cbSubtraction.TabIndex = 1;
+            this.cbSubtraction.TabIndex = 0;
             this.cbSubtraction.Text = "Inverter a ordem das imagens na sub";
             this.cbSubtraction.UseVisualStyleBackColor = true;
+            this.cbSubtraction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterKeyPress);
             // 
             // SubtractionConfigs
             // 
@@ -66,7 +67,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Configurar subtração";
+            this.Text = "Configurar Subtração";
             this.ResumeLayout(false);
             this.PerformLayout();
 

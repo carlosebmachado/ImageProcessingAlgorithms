@@ -87,6 +87,7 @@
             this.cbBlue.Name = "cbBlue";
             this.cbBlue.Size = new System.Drawing.Size(46, 17);
             this.cbBlue.TabIndex = 27;
+            this.cbBlue.TabStop = false;
             this.cbBlue.Text = "Azul";
             this.cbBlue.UseVisualStyleBackColor = true;
             // 
@@ -99,6 +100,7 @@
             this.cbGreen.Name = "cbGreen";
             this.cbGreen.Size = new System.Drawing.Size(54, 17);
             this.cbGreen.TabIndex = 26;
+            this.cbGreen.TabStop = false;
             this.cbGreen.Text = "Verde";
             this.cbGreen.UseVisualStyleBackColor = true;
             // 
@@ -111,6 +113,7 @@
             this.cbRed.Name = "cbRed";
             this.cbRed.Size = new System.Drawing.Size(70, 17);
             this.cbRed.TabIndex = 25;
+            this.cbRed.TabStop = false;
             this.cbRed.Text = "Vermelho";
             this.cbRed.UseVisualStyleBackColor = true;
             // 
@@ -154,6 +157,7 @@
             this.tb44.Name = "tb44";
             this.tb44.Size = new System.Drawing.Size(20, 20);
             this.tb44.TabIndex = 24;
+            this.tb44.TabStop = false;
             this.tb44.Text = "0";
             // 
             // tb43
@@ -162,6 +166,7 @@
             this.tb43.Name = "tb43";
             this.tb43.Size = new System.Drawing.Size(20, 20);
             this.tb43.TabIndex = 23;
+            this.tb43.TabStop = false;
             this.tb43.Text = "0";
             // 
             // tb42
@@ -170,6 +175,7 @@
             this.tb42.Name = "tb42";
             this.tb42.Size = new System.Drawing.Size(20, 20);
             this.tb42.TabIndex = 22;
+            this.tb42.TabStop = false;
             this.tb42.Text = "0";
             // 
             // tb41
@@ -178,6 +184,7 @@
             this.tb41.Name = "tb41";
             this.tb41.Size = new System.Drawing.Size(20, 20);
             this.tb41.TabIndex = 21;
+            this.tb41.TabStop = false;
             this.tb41.Text = "0";
             // 
             // tb40
@@ -186,6 +193,7 @@
             this.tb40.Name = "tb40";
             this.tb40.Size = new System.Drawing.Size(20, 20);
             this.tb40.TabIndex = 20;
+            this.tb40.TabStop = false;
             this.tb40.Text = "0";
             // 
             // tb34
@@ -194,6 +202,7 @@
             this.tb34.Name = "tb34";
             this.tb34.Size = new System.Drawing.Size(20, 20);
             this.tb34.TabIndex = 19;
+            this.tb34.TabStop = false;
             this.tb34.Text = "0";
             // 
             // tb33
@@ -202,6 +211,7 @@
             this.tb33.Name = "tb33";
             this.tb33.Size = new System.Drawing.Size(20, 20);
             this.tb33.TabIndex = 18;
+            this.tb33.TabStop = false;
             this.tb33.Text = "0";
             // 
             // tb32
@@ -210,6 +220,7 @@
             this.tb32.Name = "tb32";
             this.tb32.Size = new System.Drawing.Size(20, 20);
             this.tb32.TabIndex = 17;
+            this.tb32.TabStop = false;
             this.tb32.Text = "0";
             // 
             // tb31
@@ -218,6 +229,7 @@
             this.tb31.Name = "tb31";
             this.tb31.Size = new System.Drawing.Size(20, 20);
             this.tb31.TabIndex = 16;
+            this.tb31.TabStop = false;
             this.tb31.Text = "0";
             // 
             // tb30
@@ -226,6 +238,7 @@
             this.tb30.Name = "tb30";
             this.tb30.Size = new System.Drawing.Size(20, 20);
             this.tb30.TabIndex = 15;
+            this.tb30.TabStop = false;
             this.tb30.Text = "0";
             // 
             // tb24
@@ -234,6 +247,7 @@
             this.tb24.Name = "tb24";
             this.tb24.Size = new System.Drawing.Size(20, 20);
             this.tb24.TabIndex = 14;
+            this.tb24.TabStop = false;
             this.tb24.Text = "0";
             // 
             // tb23
@@ -242,6 +256,7 @@
             this.tb23.Name = "tb23";
             this.tb23.Size = new System.Drawing.Size(20, 20);
             this.tb23.TabIndex = 13;
+            this.tb23.TabStop = false;
             this.tb23.Text = "0";
             // 
             // tb22
@@ -250,6 +265,7 @@
             this.tb22.Name = "tb22";
             this.tb22.Size = new System.Drawing.Size(20, 20);
             this.tb22.TabIndex = 12;
+            this.tb22.TabStop = false;
             this.tb22.Text = "1";
             // 
             // tb21
@@ -258,6 +274,7 @@
             this.tb21.Name = "tb21";
             this.tb21.Size = new System.Drawing.Size(20, 20);
             this.tb21.TabIndex = 11;
+            this.tb21.TabStop = false;
             this.tb21.Text = "0";
             // 
             // tb20
@@ -266,6 +283,7 @@
             this.tb20.Name = "tb20";
             this.tb20.Size = new System.Drawing.Size(20, 20);
             this.tb20.TabIndex = 10;
+            this.tb20.TabStop = false;
             this.tb20.Text = "0";
             // 
             // tb14
@@ -274,6 +292,7 @@
             this.tb14.Name = "tb14";
             this.tb14.Size = new System.Drawing.Size(20, 20);
             this.tb14.TabIndex = 9;
+            this.tb14.TabStop = false;
             this.tb14.Text = "0";
             // 
             // tb13
@@ -282,6 +301,7 @@
             this.tb13.Name = "tb13";
             this.tb13.Size = new System.Drawing.Size(20, 20);
             this.tb13.TabIndex = 8;
+            this.tb13.TabStop = false;
             this.tb13.Text = "0";
             // 
             // tb12
@@ -290,6 +310,7 @@
             this.tb12.Name = "tb12";
             this.tb12.Size = new System.Drawing.Size(20, 20);
             this.tb12.TabIndex = 7;
+            this.tb12.TabStop = false;
             this.tb12.Text = "0";
             // 
             // tb11
@@ -298,6 +319,7 @@
             this.tb11.Name = "tb11";
             this.tb11.Size = new System.Drawing.Size(20, 20);
             this.tb11.TabIndex = 6;
+            this.tb11.TabStop = false;
             this.tb11.Text = "0";
             // 
             // tb10
@@ -306,6 +328,7 @@
             this.tb10.Name = "tb10";
             this.tb10.Size = new System.Drawing.Size(20, 20);
             this.tb10.TabIndex = 5;
+            this.tb10.TabStop = false;
             this.tb10.Text = "0";
             // 
             // tb04
@@ -314,6 +337,7 @@
             this.tb04.Name = "tb04";
             this.tb04.Size = new System.Drawing.Size(20, 20);
             this.tb04.TabIndex = 4;
+            this.tb04.TabStop = false;
             this.tb04.Text = "0";
             // 
             // tb03
@@ -322,6 +346,7 @@
             this.tb03.Name = "tb03";
             this.tb03.Size = new System.Drawing.Size(20, 20);
             this.tb03.TabIndex = 3;
+            this.tb03.TabStop = false;
             this.tb03.Text = "0";
             // 
             // tb02
@@ -330,6 +355,7 @@
             this.tb02.Name = "tb02";
             this.tb02.Size = new System.Drawing.Size(20, 20);
             this.tb02.TabIndex = 2;
+            this.tb02.TabStop = false;
             this.tb02.Text = "0";
             // 
             // tb01
@@ -338,6 +364,7 @@
             this.tb01.Name = "tb01";
             this.tb01.Size = new System.Drawing.Size(20, 20);
             this.tb01.TabIndex = 1;
+            this.tb01.TabStop = false;
             this.tb01.Text = "0";
             // 
             // tb00
@@ -346,6 +373,7 @@
             this.tb00.Name = "tb00";
             this.tb00.Size = new System.Drawing.Size(20, 20);
             this.tb00.TabIndex = 0;
+            this.tb00.TabStop = false;
             this.tb00.Text = "0";
             // 
             // btnConfirm
@@ -353,10 +381,11 @@
             this.btnConfirm.Location = new System.Drawing.Point(163, 168);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 2;
+            this.btnConfirm.TabIndex = 0;
             this.btnConfirm.Text = "Confirmar";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.Confirm);
+            this.btnConfirm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterKeyPress);
             // 
             // groupBox3
             // 
@@ -374,6 +403,7 @@
             this.txtDiv.Name = "txtDiv";
             this.txtDiv.Size = new System.Drawing.Size(71, 20);
             this.txtDiv.TabIndex = 0;
+            this.txtDiv.TabStop = false;
             this.txtDiv.Text = "1";
             // 
             // ConvoluctionConfigs
