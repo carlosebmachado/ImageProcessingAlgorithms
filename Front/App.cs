@@ -45,7 +45,7 @@ namespace IPA.Front
             openFileDialog.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|" + "All files (*.*)|*.*";
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
-            openFileDialog.FilterIndex = 2;
+            openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.ReadOnlyChecked = true;
             openFileDialog.ShowReadOnly = true;
