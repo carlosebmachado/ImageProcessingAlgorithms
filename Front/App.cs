@@ -1,10 +1,13 @@
 ﻿using IPA.Core;
+using IPA.Front.Configs;
+using IPA.Front.DataView;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Security;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace IPA.Front
 {
@@ -170,6 +173,7 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
         private void GrayScaleW(object sender, EventArgs e)
         {
             if (NoImages()) return;
@@ -186,6 +190,7 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
         private void Negative(object sender, EventArgs e)
         {
             if (NoImages()) return;
@@ -202,10 +207,12 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
         private void ThresholdForm(object sender, EventArgs e)
         {
             new ThresholdConfigs().ShowDialog();
         }
+
         public void Threshold(bool bw, int L)
         {
             if (NoImages()) return;
@@ -233,14 +240,16 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
         private void AdditionForm(object sender, EventArgs e)
         {
             new AdditionConfigs().ShowDialog();
         }
+
         public void AdditionW(float p)
         {
             if (NoImages()) return;
-            if (CorrectImageAmount()) return;
+            if (NotCorrectImageAmount(2)) return;
             if (NotCompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
@@ -253,9 +262,10 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
         private void Addition(object sender, EventArgs e) {
             if (NoImages()) return;
-            if (CorrectImageAmount()) return;
+            if (NotCorrectImageAmount(2)) return;
             if (NotCompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
@@ -268,14 +278,16 @@ namespace IPA.Front
 
             ShowElapsedTime(stopwatch.Elapsed.ToString());
         }
+
         private void SubtractionForm(object sender, EventArgs e)
         {
             new SubtractionConfigs().ShowDialog();
         }
+
         public void Subtraction(bool invert)
         {
             if (NoImages()) return;
-            if (CorrectImageAmount()) return;
+            if (NotCorrectImageAmount(2)) return;
             if (NotCompatibleImages()) return;
 
             var stopwatch = new Stopwatch();
@@ -461,6 +473,7 @@ namespace IPA.Front
         {
             new MorphologyConfig().ShowDialog();
         }
+
         public void CustomMorphology(bool erosion, int[][] mask, int size)
         {
             if (NoImages()) return;
@@ -619,6 +632,117 @@ namespace IPA.Front
 
         #endregion SpaceDomain
 
+        #region M3 Algorithms
+
+        private void PixelHistogram(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+            if (NotCorrectImageAmount(1)) return;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var rgb = M3Algorithms.PixelHistogram(_images[0].Image);
+            //int[,] rgb = new int[3, 256];
+
+            var hitogram = new Histogram();
+
+            var seriesR = new Series
+            {
+                Name = "R",
+                Color = Color.Red,
+                ChartType = SeriesChartType.FastLine
+            };
+
+            var seriesG = new Series
+            {
+                Name = "G",
+                Color = Color.Green,
+                ChartType = SeriesChartType.FastLine
+            };
+
+            var seriesB = new Series
+            {
+                Name = "B",
+                Color = Color.Blue,
+                ChartType = SeriesChartType.FastLine
+            };
+
+            for (int i = 0; i < 256; i++)
+            {
+                seriesR.Points.AddXY(i, rgb[0, i]);
+                seriesG.Points.AddXY(i, rgb[1, i]);
+                seriesB.Points.AddXY(i, rgb[2, i]);
+            }
+
+            hitogram.chart.Series.Add(seriesR);
+            hitogram.chart.Series.Add(seriesG);
+            hitogram.chart.Series.Add(seriesB);
+
+            stopwatch.Stop();
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+
+            hitogram.ShowDialog();
+        }
+
+        private void ZoomIn(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var zf = new ZoomFactor();
+            zf.ShowDialog();
+            if (zf.DialogResult == DialogResult.Cancel)
+			{
+                return;
+			}
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(M3Algorithms.ZoomIn(id.Image, zf.Zoom), id.GetFullName() + "__zoom_in" + ".png"));
+            }
+
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        private void ZoomOut(object sender, EventArgs e)
+        {
+            if (NoImages()) return;
+
+            var zf = new ZoomFactor();
+            zf.ShowDialog();
+            if (zf.DialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            foreach (var id in _images)
+            {
+                _applyed.Add(new ImageData(M3Algorithms.ZoomOut(id.Image, zf.Zoom), id.GetFullName() + "__zoom_out" + ".png"));
+            }
+
+            stopwatch.Stop();
+
+            DisplayImagesEffect();
+
+            ShowElapsedTime(stopwatch.Elapsed.ToString());
+        }
+
+        private void BGSubtraction(object sender, EventArgs e)
+        {
+            new BgSubtractionForm().Show();
+        }
+
+        #endregion M3 Algorithms
+
         #endregion Effects
 
         #region Aux
@@ -693,9 +817,9 @@ namespace IPA.Front
             return false;
         }
 
-        private bool CorrectImageAmount()
+        private bool NotCorrectImageAmount(int n)
         {
-            if (_images.Count != 2)
+            if (_images.Count != n)
             {
                 MessageBox.Show("Você deve selecionar duas imagens.",
                                 "Erro",
@@ -720,6 +844,7 @@ namespace IPA.Front
         }
 
 
-        #endregion Aux
-    }
+		#endregion Aux
+
+	}
 }

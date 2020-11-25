@@ -56,7 +56,7 @@ namespace IPA.Core
         {
             // percorre pixel a pixel bi-dimensionalmente
             Bitmap applyed = new Bitmap(image.Width, image.Height);
-            applyed = BitmapToBlack(applyed);
+            applyed = Util.BitmapToBlack(applyed);
             for (int y = size; y < applyed.Height - size; y++)
             {
                 for (int x = size; x < applyed.Width - size; x++)
@@ -88,7 +88,7 @@ namespace IPA.Core
         {
             // percorre pixel a pixel bi-dimensionalmente
             Bitmap applyed = new Bitmap(image.Width, image.Height);
-            applyed = BitmapToWhite(applyed);
+            applyed = Util.BitmapToWhite(applyed);
             for (int y = size; y < applyed.Height - size; y++)
             {
                 for (int x = size; x < applyed.Width - size; x++)
@@ -124,7 +124,7 @@ namespace IPA.Core
         {
             // percorre pixel a pixel bi-dimensionalmente
             Bitmap applyed = new Bitmap(image.Width, image.Height);
-            applyed = BitmapToBlack(applyed);
+            applyed = Util.BitmapToBlack(applyed);
 
             var maskx = new int[][]
             {
@@ -166,7 +166,7 @@ namespace IPA.Core
         {
             // percorre pixel a pixel bi-dimensionalmente
             Bitmap applyed = new Bitmap(image.Width, image.Height);
-            applyed = BitmapToBlack(applyed);
+            applyed = Util.BitmapToBlack(applyed);
 
             var maskx = new int[][]
             {
@@ -211,7 +211,7 @@ namespace IPA.Core
             // percorre pixel a pixel bi-dimensionalmente
             Bitmap applyed = new Bitmap(image.Width, image.Height);
             //Bitmap applyed = (Bitmap)image.Clone();
-            applyed = BitmapToBlack(applyed);
+            applyed = Util.BitmapToBlack(applyed);
             //applyed = BitmapToWhite(applyed);
 
             var maskT = new int[][]
@@ -278,34 +278,6 @@ namespace IPA.Core
         }
 
         #endregion EdgeDetect
-
-        #region Aux
-
-        private static Bitmap BitmapToBlack(Bitmap image)
-        {
-            for (int y = 0; y < image.Height; y++)
-            {
-                for (int x = 0; x < image.Width; x++)
-                {
-                    image.SetPixel(x, y, Color.FromArgb(255, 0, 0, 0));
-                }
-            }
-            return image;
-        }
-
-        private static Bitmap BitmapToWhite(Bitmap image)
-        {
-            for (int y = 0; y < image.Height; y++)
-            {
-                for (int x = 0; x < image.Width; x++)
-                {
-                    image.SetPixel(x, y, Color.FromArgb(255, 255, 255, 255));
-                }
-            }
-            return image;
-        }
-
-        #endregion Aux
 
     }
 }
