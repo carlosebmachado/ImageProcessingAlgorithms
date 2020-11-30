@@ -39,8 +39,10 @@
 			this.tsmiVideoSelect = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiSaveVideo = new System.Windows.Forms.ToolStripMenuItem();
 			this.tsmiClean = new System.Windows.Forms.ToolStripMenuItem();
-			this.tsmiApply = new System.Windows.Forms.ToolStripMenuItem();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+			this.ferramentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiApply = new System.Windows.Forms.ToolStripMenuItem();
+			this.tsmiDoublePlay = new System.Windows.Forms.ToolStripMenuItem();
 			this.gbOriginal.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.wmpOriginal)).BeginInit();
 			this.tlpMain.SuspendLayout();
@@ -110,7 +112,7 @@
 			// 
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.arquivoToolStripMenuItem,
-            this.tsmiApply});
+            this.ferramentasToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(800, 24);
@@ -130,30 +132,46 @@
 			// tsmiVideoSelect
 			// 
 			this.tsmiVideoSelect.Name = "tsmiVideoSelect";
-			this.tsmiVideoSelect.Size = new System.Drawing.Size(141, 22);
+			this.tsmiVideoSelect.Size = new System.Drawing.Size(180, 22);
 			this.tsmiVideoSelect.Text = "Abrir vídeo...";
 			this.tsmiVideoSelect.Click += new System.EventHandler(this.VideoSelect_Click);
 			// 
 			// tsmiSaveVideo
 			// 
 			this.tsmiSaveVideo.Name = "tsmiSaveVideo";
-			this.tsmiSaveVideo.Size = new System.Drawing.Size(141, 22);
+			this.tsmiSaveVideo.Size = new System.Drawing.Size(180, 22);
 			this.tsmiSaveVideo.Text = "Salvar vídeo";
 			this.tsmiSaveVideo.Click += new System.EventHandler(this.SaveVideo_Click);
 			// 
 			// tsmiClean
 			// 
 			this.tsmiClean.Name = "tsmiClean";
-			this.tsmiClean.Size = new System.Drawing.Size(141, 22);
+			this.tsmiClean.Size = new System.Drawing.Size(180, 22);
 			this.tsmiClean.Text = "Limpar";
 			this.tsmiClean.Click += new System.EventHandler(this.Clean_Click);
+			// 
+			// ferramentasToolStripMenuItem
+			// 
+			this.ferramentasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiApply,
+            this.tsmiDoublePlay});
+			this.ferramentasToolStripMenuItem.Name = "ferramentasToolStripMenuItem";
+			this.ferramentasToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+			this.ferramentasToolStripMenuItem.Text = "Ferramentas";
 			// 
 			// tsmiApply
 			// 
 			this.tsmiApply.Name = "tsmiApply";
-			this.tsmiApply.Size = new System.Drawing.Size(56, 20);
-			this.tsmiApply.Text = "Aplicar";
+			this.tsmiApply.Size = new System.Drawing.Size(217, 22);
+			this.tsmiApply.Text = "Aplicar subtração de fundo";
 			this.tsmiApply.Click += new System.EventHandler(this.Apply_Click);
+			// 
+			// tsmiDoublePlay
+			// 
+			this.tsmiDoublePlay.Name = "tsmiDoublePlay";
+			this.tsmiDoublePlay.Size = new System.Drawing.Size(217, 22);
+			this.tsmiDoublePlay.Text = "Duplo play";
+			this.tsmiDoublePlay.Click += new System.EventHandler(this.DoublePlay_Click);
 			// 
 			// BgSubtractionForm
 			// 
@@ -188,9 +206,11 @@
 		private System.Windows.Forms.ToolStripMenuItem tsmiVideoSelect;
 		private System.Windows.Forms.ToolStripMenuItem tsmiSaveVideo;
 		private System.Windows.Forms.ToolStripMenuItem tsmiClean;
-		private System.Windows.Forms.ToolStripMenuItem tsmiApply;
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
 		private AxWMPLib.AxWindowsMediaPlayer wmpOriginal;
 		private AxWMPLib.AxWindowsMediaPlayer wmpEffect;
+		private System.Windows.Forms.ToolStripMenuItem ferramentasToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem tsmiApply;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDoublePlay;
 	}
 }

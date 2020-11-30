@@ -36,6 +36,14 @@ namespace IPA.Core
             else return val;
         }
 
+        // função básica de clamp
+        public static double Clamp(double val, double min, double max)
+        {
+            if (val < min) return min;
+            else if (val > max) return max;
+            else return val;
+        }
+
         public static Bitmap BitmapToBlack(Bitmap image)
         {
             for (int y = 0; y < image.Height; y++)

@@ -117,5 +117,13 @@ namespace IPA.Front
 							MessageBoxButtons.OK,
 							MessageBoxIcon.Information);
 		}
+
+		private void DoublePlay_Click(object sender, EventArgs e)
+		{
+			wmpOriginal.Ctlcontrols.currentPosition = 0;
+			wmpOriginal.Ctlcontrols.play();
+			wmpEffect.Ctlcontrols.currentPosition = 0;
+			wmpEffect.Ctlcontrols.play();
+		}
 	}
 }
